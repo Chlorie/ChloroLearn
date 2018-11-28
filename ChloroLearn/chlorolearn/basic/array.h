@@ -115,36 +115,36 @@ namespace chloro
 
         // Accessors
         const std::vector<T>& data() const { return data_; }
-        T& at(const std::initializer_list<int>& list) // Specify the index by an initializer_list
+        T& at(const std::initializer_list<size_t>& list) // Specify the index by an initializer_list
         {
             if (list.size() != shape_.size())
                 throw MismatchedSizesException("Dimension of input is not the same as that of the array");
             int index = 0;
             int i = 0;
-            for (int value : list)
+            for (size_t value : list)
             {
-                if (value < 0 || size_t(value) >= shape_[i]) throw ArgumentOutOfRangeException("Index out of range");
+                if (value >= shape_[i]) throw ArgumentOutOfRangeException("Index out of range");
                 index = index * shape_[i] + value;
                 i++;
             }
             return data_[index];
         }
-        const T& at(const std::initializer_list<int>& list) const // Const version
+        const T& at(const std::initializer_list<size_t>& list) const // Const version
         {
             if (list.size() != shape_.size())
                 throw MismatchedSizesException("Dimension of input is not the same as that of the array");
             int index = 0;
             int i = 0;
-            for (int value : list)
+            for (size_t value : list)
             {
-                if (value < 0 || size_t(value) >= shape_[i]) throw ArgumentOutOfRangeException("Index out of range");
+                if (value >= shape_[i]) throw ArgumentOutOfRangeException("Index out of range");
                 index = index * shape_[i] + value;
                 i++;
             }
             return data_[index];
         }
-        T& operator()(const std::initializer_list<int>& list) { return at(list); }
-        const T& operator()(const std::initializer_list<int>& list) const { return at(list); }
+        T& operator()(const std::initializer_list<size_t>& list) { return at(list); }
+        const T& operator()(const std::initializer_list<size_t>& list) const { return at(list); }
         T& operator[](const size_t index) { return data_[index]; }
         const T& operator[](const size_t index) const { return data_[index]; }
         void set_values(const std::vector<T>& values)
@@ -308,18 +308,17 @@ namespace chloro
             data_.clear();
             data_.resize(size);
         }
-        void reshape(const std::initializer_list<int> list)
+        void reshape(const ArrayShape& shape)
         {
-            const std::vector<int>& vector(list);
             int automatic = -1;
             size_t size = 1;
             shape_.clear();
-            for (size_t i = 0; i < vector.size(); i++)
+            for (size_t i = 0; i < shape.size(); i++)
             {
-                if (vector[i] <= 0)
+                if (shape[i] <= 0)
                 {
                     // Automatic dimension
-                    if (vector[i] == -1)
+                    if (shape[i] == -1)
                     {
                         if (automatic == -1)
                             automatic = i;
@@ -330,8 +329,8 @@ namespace chloro
                         throw ArgumentOutOfRangeException("The lengths should be positive or -1 for automatic");
                 }
                 else
-                    size *= vector[i];
-                shape_.push_back(vector[i]);
+                    size *= shape[i];
+                shape_.push_back(shape[i]);
             }
             const size_t data_size = data_.size();
             // No automatic dimension
@@ -347,11 +346,11 @@ namespace chloro
                 shape_[automatic] = data_size / size;
             }
         }
-        void force_resize(const ArrayShape& list)
+        void force_reshape(const ArrayShape& shape)
         {
             shape_.clear();
             size_t size = 1;
-            for (const T& value : list)
+            for (size_t value : shape)
             {
                 if (value <= 0) throw ArgumentOutOfRangeException("Lengths should be positive");
                 shape_.push_back(value);

@@ -6,53 +6,6 @@
 
 namespace chloro::operators
 {
-    namespace
-    {
-        OutParam matmul_lr_vec_eval(InParams params) { return params[1].get()[0] * params[0]; }
-        OutParams matmul_lr_vec_grad(InParam gradient, InParams params)
-        {
-            return
-            {
-                params[1].get()[0] * gradient,
-                { (params[0] * gradient).accumulate(0) }
-            };
-        }
-        Evaluation matmul_l_vec_eval(const size_t left_row, const size_t right_col)
-        {
-            return [=](InParams params)
-            {
-                InParam first = params[0];
-                InParam second = params[1];
-                Array<double> result = Array<double>::zeros({ left_row, right_col });
-                for (size_t i = 0; i < left_row; i++)
-                    for (size_t j = 0; j < right_col; j++)
-                        result[i * right_col + j] = first[i] * second[j];
-                return result;
-            };
-        }
-        Partials matmul_l_vec_grad(const size_t left_row, const size_t right_col)
-        {
-            return [=](InParam gradient, InParams params)
-            {
-                InParam first = params[0];
-                InParam second = params[1];
-                Array<double> grad_left = Array<double>::zeros({ left_row });
-                for (size_t i = 0; i < left_row; i++)
-                    for (size_t j = 0; j < right_col; j++)
-                        grad_left[i] += gradient[i * right_col + j] * second[j];
-                Array<double> grad_right = Array<double>::zeros({ 1, right_col });
-                for (size_t i = 0; i < left_row; i++)
-                    for (size_t j = 0; j < right_col; j++)
-                        grad_right[j] += first[i] * gradient[i * right_col + j];
-                return OutParams{ grad_left,grad_right };
-            };
-        }
-        Evaluation matmul_r_vec_eval(const size_t left_row, const size_t right_col)
-        {
-            
-        }
-    }
-
     Operand identity(Operand operand)
     {
         Operator op([](InParams params) { return params[0]; },
@@ -71,7 +24,7 @@ namespace chloro::operators
     Operand subtract(Operand left, Operand right)
     {
         Operator op([](InParams params) { return params[0] - params[1]; },
-            [](InParam gradient, InParams) { return OutParams{ gradient,-gradient }; }, left.shape());
+            [](InParam gradient, InParams) { return OutParams{ gradient, -gradient }; }, left.shape());
         return Operand::join(std::move(op), { std::move(left), std::move(right) });
     }
     Operand operator-(Operand left, Operand right) { return subtract(std::move(left), std::move(right)); }
@@ -108,35 +61,43 @@ namespace chloro::operators
 
     Operand matrix_multiply(Operand left, Operand right)
     {
-        if (left.shape().size() > 2 || right.shape().size() > 2)
+        if (left.shape().size() != 2 || right.shape().size() != 2)
             throw MismatchedSizesException("The operands are not matrices");
-        const bool left_vec = left.shape().size() == 1;
-        const size_t left_row = left_vec ? 1 : left.shape()[0];
-        const size_t left_col = left_vec ? left.shape()[0] : left.shape()[1];
-        const bool right_vec = right.shape().size() == 1;
-        const size_t right_row = right_vec ? 1 : right.shape()[0];
-        const size_t right_col = right_vec ? right.shape()[0] : right.shape()[1];
-        if (left_col != right_row) throw MismatchedSizesException("Cannot multiply these operands");
-        if (left_vec)
-        {
-            if (right_vec)
-                return Operand::join({ matmul_lr_vec_eval, matmul_lr_vec_grad, { left_row } },
-                    { std::move(left),std::move(right) });
-            return Operand::join(
-                {
-                    matmul_l_vec_eval(left_row, right_col),
-                    matmul_l_vec_grad(left_row, right_col),
-                    { left_row, right_col }
-                }, { std::move(left),std::move(right) });
-        }
-        if (right_vec)
-        {
-
-        }
-        else
-        {
-
-        }
+        const size_t left_row = left.shape()[0];
+        const size_t left_col = left.shape()[1];
+        if (left_col != right.shape()[0])
+            throw MismatchedSizesException("The two matrices cannot be multiplied");
+        const size_t right_col = right.shape()[1];
+        const ArrayShape shape{ left_row, right_col };
+        Operator op(
+            [=](InParams params)
+            {
+                const Array<double>& first = params[0];
+                const Array<double>& second = params[1];
+                Array<double> result = Array<double>::zeros(shape);
+                for (size_t i = 0; i < left_row; i++)
+                    for (size_t j = 0; j < right_col; j++)
+                        for (size_t k = 0; k < left_col; k++)
+                            result[i * right_col + j] += first[i * left_col + k] * second[k * right_col + j];
+                return result;
+            },
+            [=](InParam gradient, InParams params)
+            {
+                const Array<double>& first = params[0];
+                const Array<double>& second = params[1];
+                Array<double> left_grad = Array<double>::zeros(first.shape());
+                Array<double> right_grad = Array<double>::zeros(second.shape());
+                for (size_t i = 0; i < left_row; i++)
+                    for (size_t j = 0; j < left_col; j++)
+                        for (size_t k = 0; k < right_col; k++)
+                            left_grad[i * left_col + j] += gradient[i * right_col + k] * second[j * right_col + k];
+                for (size_t i = 0; i < left_col; i++)
+                    for (size_t j = 0; j < right_col; j++)
+                        for (size_t k = 0; k < left_row; k++)
+                            right_grad[i * right_col + j] += first[k * left_col + i] * gradient[k * right_col + j];
+                return OutParams{ left_grad, right_grad };
+            }, shape);
+        return Operand::join(std::move(op), { std::move(left), std::move(right) });
     }
 
     Operand dot(Operand left, Operand right) { return sum(std::move(left) * std::move(right)); }
@@ -150,12 +111,33 @@ namespace chloro::operators
         return Operand::join(std::move(op), { std::move(scalar) });
     }
 
+    Operand reshape(Operand input, const ArrayShape& shape)
+    {
+        Array<double> array = Array<double>::zeros(input.shape());
+        array.reshape(shape);
+        const ArrayShape& new_shape = array.shape();
+        Operator op(
+            [=](InParams params)
+            {
+                Array<double> result = params[0];
+                result.force_reshape(new_shape);
+                return result;
+            },
+            [](InParam gradient, InParams params)
+            {
+                Array<double> result = gradient;
+                result.force_reshape(params[0].get().shape());
+                return OutParams{ result };
+            }, new_shape);
+        return Operand::join(std::move(op), { std::move(input) });
+    }
+
     Operand sum(Operand operand)
     {
         const ArrayShape& shape = operand.shape();
         Operator op([](InParams params) { return params[0].get().accumulate(0); },
             [=](InParam gradient, InParams)
-            { return OutParams{ Array<double>::repeats(gradient[0], operand.shape()) }; }, shape);
+            { return OutParams{ Array<double>::repeats(gradient[0], shape) }; }, shape);
         return Operand::join(std::move(op), { std::move(operand) });
     }
 
@@ -172,5 +154,20 @@ namespace chloro::operators
                 };
             }, base.shape());
         return Operand::join(std::move(op), { std::move(base) });
+    }
+
+    Operand exp(Operand exponent, const double base)
+    {
+        Operator op([=](InParams params)
+            {return params[0].get().apply([=](const double v) { return std::pow(base, v); }); },
+            [=](InParam gradient, InParams params)
+            {
+                return OutParams
+                {
+                    std::log(base) * gradient * params[0].get().apply(
+                        [=](const double v) { return std::pow(base, v); })
+                };
+            }, exponent.shape());
+        return Operand::join(std::move(op), { std::move(exponent) });
     }
 }
