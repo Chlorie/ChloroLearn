@@ -1,22 +1,18 @@
 #pragma once
 
-// The implementation of these two classes below contains a large
-// amount of repetitive definitions for function completeness
-// Though most of these will not be used
-
-#include <iostream>
 #include <vector>
 #include <initializer_list>
 #include <type_traits>
 #include <algorithm>
 #include <numeric>
+#include <random>
 
 #include "exceptions.h"
 
 namespace chloro
 {
-    // Type alias
     using ArrayShape = std::vector<size_t>;
+    inline static const ArrayShape scalar_shape{ 1 };
 
     template <typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
     class Array final
@@ -64,21 +60,30 @@ namespace chloro
         Array(Array<U>&& other) : data_(other.data_.begin(), other.data_.end()), shape_(std::move(other.shape_)) {}
 
         // Construct helpers
-        template <typename ...Ts>
-        static Array zeros(Ts ...vs) { return zeros({ vs... }); }
-        static Array zeros(const ArrayShape& list) // Constructs an array with given dimensions
+        static Array zeros(const ArrayShape& shape) // Constructs an array with given dimensions
         {
-            size_t size = std::accumulate(list.begin(), list.end(), 1, std::multiplies<size_t>());
+            size_t size = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<size_t>());
             Array result;
-            result.shape_ = list;
+            result.shape_ = shape;
             result.data_.resize(size);
             return result;
         }
-        static Array repeats(const T repeat, const ArrayShape& list) // Repeats a value
+        static Array random(const ArrayShape& shape) // Constructs an array with standard normally distributed numbers
         {
-            size_t size = std::accumulate(list.begin(), list.end(), 1, std::multiplies<size_t>());
+            static std::mt19937 generator{ std::random_device()() };
+            static std::normal_distribution distribution;
+            size_t size = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<size_t>());
             Array result;
-            result.shape_ = list;
+            result.shape_ = shape;
+            result.data_.reserve(size);
+            for (size_t i = 0; i < size; i++) result.data_.push_back(distribution(generator));
+            return result;
+        }
+        static Array repeats(const T repeat, const ArrayShape& shape) // Repeats a value
+        {
+            size_t size = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<size_t>());
+            Array result;
+            result.shape_ = shape;
             result.data_ = std::vector<T>(size, repeat);
             return result;
         }
@@ -149,12 +154,14 @@ namespace chloro
         const T& operator[](const size_t index) const { return data_[index]; }
         void set_values(const std::vector<T>& values)
         {
-            if (values.size() != data_.size()) throw MismatchedSizesException("New value and old value are not of the same size");
+            if (values.size() != data_.size())
+                throw MismatchedSizesException("New value and old value are not of the same size");
             data_ = values;
         }
         void set_values(std::vector<T>&& values)
         {
-            if (values.size() != data_.size()) throw MismatchedSizesException("New value and old value are not of the same size");
+            if (values.size() != data_.size())
+                throw MismatchedSizesException("New value and old value are not of the same size");
             data_ = std::move(values);
         }
 

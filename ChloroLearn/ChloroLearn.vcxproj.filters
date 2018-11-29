@@ -36,6 +36,9 @@
     <ClCompile Include="chlorolearn\graph\operators\activation.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="chlorolearn\utility\utility.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chlorolearn\basic\array.h">
@@ -81,6 +84,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="chlorolearn\graph\operators\activation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chlorolearn\utility\binary_io.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chlorolearn\utility\utility.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

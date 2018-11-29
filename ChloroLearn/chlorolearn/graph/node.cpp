@@ -46,11 +46,11 @@ namespace chloro
         {
         case 0: case 1: return; // Back propagation ends at constant values
         case 2: // Variable
-            gradient_ += gradient;
+            gradient_ += gradient.apply([](const double v) { return std::clamp(v, -5.0, 5.0); });
             updated_time_++;
             return;
         case 3: // Operator
-            gradient_ += gradient;
+            gradient_ += gradient.apply([](const double v) { return std::clamp(v, -5.0, 5.0); });
             updated_time_++;
             if (updated_time_ % update_time_ == 0)
             {

@@ -8,8 +8,31 @@ namespace chloro::operators
     {
         Operator op([](InParams params) { return params[0].get().apply([](const double v) { return v > 0 ? v : 0; }); },
             [](InParam gradient, InParams params)
-            { return OutParams{ gradient * params[0].get().apply([](const double v) {return v > 0 ? 1 : 0; }) }; },
+            { return OutParams{ gradient * params[0].get().apply([](const double v) { return v > 0 ? 1 : 0; }) }; },
             operand.shape());
+        return Operand::join(std::move(op), { std::move(operand) });
+    }
+
+    Operand sigmoid(Operand operand)
+    {
+        Operator op(
+            [](InParams params)
+            {
+                return params[0].get().apply([](const double v)
+                    { return 1 / (1 + std::exp(-v)); });
+            },
+            [](InParam gradient, InParams params)
+            {
+                return OutParams
+                {
+                    gradient * params[0].get().apply(
+                    [](const double v)
+                    {
+                        const double sig = 1 / (1 + std::exp(-v));
+                        return sig * (1 - sig);
+                    })
+                };
+            }, operand.shape());
         return Operand::join(std::move(op), { std::move(operand) });
     }
 
@@ -19,7 +42,7 @@ namespace chloro::operators
             [](InParams params)
             {
                 InParam param = params[0];
-                const double max = param.accumulate(param[0], [](const double x, const double y) {return x > y ? x : y; });
+                const double max = param.accumulate(param[0], [](const double x, const double y) { return x > y ? x : y; });
                 Array<double> aug_exp = (param - max).apply(std::exp<double, double>);
                 const double sum = aug_exp.accumulate(0);
                 return aug_exp /= sum;
@@ -27,7 +50,7 @@ namespace chloro::operators
             [](InParam gradient, InParams params)
             {
                 InParam param = params[0];
-                const double max = param.accumulate(param[0], [](const double x, const double y) {return x > y ? x : y; });
+                const double max = param.accumulate(param[0], [](const double x, const double y) { return x > y ? x : y; });
                 Array<double> aug_exp = (param - max).apply(std::exp<double, double>);
                 const double sum = aug_exp.accumulate(0);
                 Array<double> exp = param.apply(std::exp<double, double>);

@@ -3,6 +3,7 @@
 #include "graph.h"
 #include "nodes/input.h"
 #include "nodes/variable.h"
+#include "../utility/binary_io.h"
 
 namespace chloro
 {
@@ -132,5 +133,38 @@ namespace chloro
             target.back_propagate(ones);
             for (Node& node : nodes_) node.apply_gradient(learning_rate);
         }
+    }
+
+    void Graph::save_variables(const std::string& path) const
+    {
+        std::ofstream stream(path, std::ios::out | std::ios::binary);
+        for (const Node& node : nodes_)
+            if (node.content_.index() == 2)
+            {
+                const Array<double>& value = std::get<2>(node.content_).value();
+                write_vector(stream, value.shape());
+                write_vector(stream, value.data());
+            }
+        stream.close();
+    }
+
+    void Graph::load_variables(const std::string& path)
+    {
+        std::ifstream stream(path, std::ios::in | std::ios::binary);
+        for (Node& node : nodes_)
+            if (node.content_.index() == 2)
+            {
+                Variable& variable = std::get<2>(node.content_);
+                ArrayShape shape;
+                read_vector(stream, shape);
+                if (!stream.good())
+                    throw IllegalOperationException("Data in the file doesn't match the variable amount in the graph");
+                Array<double> array = Array<double>::zeros(shape);
+                std::vector<double> values;
+                read_vector(stream, values);
+                array.set_values(std::move(values));
+                variable.set_value(std::move(array));
+            }
+        stream.close();
     }
 }

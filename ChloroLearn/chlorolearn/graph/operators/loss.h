@@ -4,5 +4,7 @@
 
 namespace chloro::operators
 {
-    //Operand categorical_cross_entropy(Operand result, Operand target);
+    // Cross entropy loss for classification use
+    // Loss will not back propogate to the target branch
+    Operand categorical_cross_entropy(Operand predicted, Operand target);
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <list>
 #include <initializer_list>
 
@@ -28,8 +29,10 @@ namespace chloro
         Node& add_operator(Operand&& list);
         const Array<double>& get_value(Node& node, std::initializer_list<InputParam> input_params = {});
         void set_variable(Node& node, const Array<double>& value) const;
-        void optimize_once(Node& target, std::initializer_list<InputParam> input_params = {}, double learning_rate = 0.1);
+        void optimize_once(Node& target, std::initializer_list<InputParam> input_params = {}, double learning_rate = 0.001);
         void optimize(size_t batch_size, Node& target, std::initializer_list<InputPack> input_pack = {},
-            double learning_rate = 0.1, bool not_update_dag = false);
+            double learning_rate = 0.001, bool not_update_dag = false);
+        void save_variables(const std::string& path) const;
+        void load_variables(const std::string& path);
     };
 }

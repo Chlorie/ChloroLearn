@@ -15,5 +15,6 @@ namespace chloro
         Stopwatch() :start_(Clock::now()) {}
         void stop() { stop_ = Clock::now(); }
         std::chrono::nanoseconds elapsed_time() const { return stop_ - start_; }
+        double seconds() const { return elapsed_time().count() / 1e9; }
     };
 }

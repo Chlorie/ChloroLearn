@@ -137,7 +137,7 @@ namespace chloro::operators
         const ArrayShape& shape = operand.shape();
         Operator op([](InParams params) { return params[0].get().accumulate(0); },
             [=](InParam gradient, InParams)
-            { return OutParams{ Array<double>::repeats(gradient[0], shape) }; }, shape);
+            { return OutParams{ Array<double>::repeats(gradient[0], shape) }; }, { 1 });
         return Operand::join(std::move(op), { std::move(operand) });
     }
 

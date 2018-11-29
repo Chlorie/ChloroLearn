@@ -125,6 +125,7 @@
     <ClCompile Include="chlorolearn\graph\operators\activation.cpp" />
     <ClCompile Include="chlorolearn\graph\operators\basic_operators.cpp" />
     <ClCompile Include="chlorolearn\graph\operators\loss.cpp" />
+    <ClCompile Include="chlorolearn\utility\utility.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,7 +143,9 @@
     <ClInclude Include="chlorolearn\graph\operators\basic_operators.h" />
     <ClInclude Include="chlorolearn\graph\operand.h" />
     <ClInclude Include="chlorolearn\graph\operators\loss.h" />
+    <ClInclude Include="chlorolearn\utility\binary_io.h" />
     <ClInclude Include="chlorolearn\utility\stopwatch.h" />
+    <ClInclude Include="chlorolearn\utility\utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
