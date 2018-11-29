@@ -1,6 +1,6 @@
 #include <algorithm>
 
-#include "activation_functions.h"
+#include "activation.h"
 
 namespace chloro::operators
 {

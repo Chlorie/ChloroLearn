@@ -30,7 +30,10 @@
     <ClCompile Include="chlorolearn\graph\operators\basic_operators.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="chlorolearn\graph\operators\activation_functions.cpp">
+    <ClCompile Include="chlorolearn\graph\operators\loss.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="chlorolearn\graph\operators\activation.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,16 +68,19 @@
     <ClInclude Include="chlorolearn\graph\input_param.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="chlorolearn\testing\stopwatch.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="chlorolearn\graph\operators\activation_functions.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="chlorolearn\graph\operand.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="chlorolearn\graph\input_pack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chlorolearn\utility\stopwatch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chlorolearn\graph\operators\loss.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chlorolearn\graph\operators\activation.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
