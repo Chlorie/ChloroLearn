@@ -5,6 +5,7 @@ var searchData=
   ['chloroexception',['ChloroException',['../classchloro_1_1_chloro_exception.html',1,'chloro']]],
   ['clear',['clear',['../classchloro_1_1_array.html#a94144c834f31351492522de15d901369',1,'chloro::Array']]],
   ['constant',['Constant',['../classchloro_1_1_constant.html',1,'chloro::Constant'],['../classchloro_1_1_constant.html#ad87a512ebdce4b30b4d63038e7fd6cc8',1,'chloro::Constant::Constant()']]],
+  ['chlorolearn',['ChloroLearn',['../index.html',1,'']]],
   ['layers',['layers',['../namespacechloro_1_1layers.html',1,'chloro']]],
   ['operators',['operators',['../namespacechloro_1_1operators.html',1,'chloro']]]
 ];
