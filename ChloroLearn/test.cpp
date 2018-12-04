@@ -8,15 +8,11 @@
 #include "chlorolearn/graph/graph.h"
 #include "chlorolearn/utility/stopwatch.h"
 #include "chlorolearn/utility/utility.h"
-#include "chlorolearn/graph/operators/basic_operators.h"
 #include "chlorolearn/graph/operators/activation.h"
+#include "chlorolearn/graph/operators/layer.h"
 #include "chlorolearn/graph/operators/loss.h"
 
-using namespace chloro;
-using namespace operators;
-using DataValues = std::vector<Array<double>>;
-
-void load_training_data(const std::string& file_name, DataValues& x, DataValues& y)
+void load_training_data(const std::string& file_name, chloro::DataValues& x, chloro::DataValues& y)
 {
     std::ifstream stream{ file_name };
     // Read the first row and discard it...
@@ -29,9 +25,9 @@ void load_training_data(const std::string& file_name, DataValues& x, DataValues&
         double value;
         stream >> value;
         if (!stream.good()) break;
-        y.push_back(Array<double>{ value });
-        x.push_back(Array<double>::zeros({ 784,1 }));
-        Array<double>& array = x.back();
+        y.push_back(chloro::Array<double>{ value });
+        x.push_back(chloro::Array<double>::zeros({ 784,1 }));
+        chloro::Array<double>& array = x.back();
         for (size_t i = 0; i < 784; i++)
         {
             char temp;
@@ -45,6 +41,13 @@ void load_training_data(const std::string& file_name, DataValues& x, DataValues&
 
 int main()
 {
+    using chloro::Graph;
+    using chloro::NodeRef;
+    using chloro::Stopwatch;
+    using chloro::DataValues;
+    namespace opr = chloro::operators;
+    namespace lyr = chloro::layers;
+
     // Test: Real MNIST data test
     DataValues x, y;
     DataValues train_x, train_y;
@@ -62,31 +65,25 @@ int main()
     // Construct the graph
     Graph graph;
     const NodeRef input = graph.add_input({ 784,1 });
-    const NodeRef weight_1 = graph.add_variable({ 100,784 });
-    const NodeRef bias_1 = graph.add_variable({ 100,1 });
-    const NodeRef output_1 = graph.add_operator(relu(matrix_multiply(weight_1, input) + bias_1));
-    const NodeRef weight_2 = graph.add_variable({ 30,100 });
-    const NodeRef bias_2 = graph.add_variable({ 30,1 });
-    const NodeRef output_2 = graph.add_operator(relu(matrix_multiply(weight_2, output_1) + bias_2));
-    const NodeRef weight_3 = graph.add_variable({ 10,30 });
-    const NodeRef bias_3 = graph.add_variable({ 10,1 });
-    const NodeRef predicted = graph.add_operator(softmax(sigmoid(matrix_multiply(weight_3, output_2) + bias_3)));
+    const NodeRef dense_1 = lyr::dense_layer(graph, input, 200, opr::relu);
+    const NodeRef dense_2 = lyr::dense_layer(graph, dense_1, 80, opr::relu);
+    const NodeRef dense_3 = lyr::dense_layer(graph, dense_2, 25, opr::relu);
+    const NodeRef predicted = lyr::dense_layer(graph, dense_3, 10, opr::softmax);
     const NodeRef target = graph.add_input();
-    const NodeRef loss = graph.add_operator(categorical_cross_entropy(predicted, target));
+    const NodeRef loss = graph.add_operator(opr::categorical_cross_entropy(predicted, target));
 
     // Perform the optimization
     size_t counter = 0;
-    const size_t batch_size = 10000;
-    bool not_update_dag = false;
+    const size_t batch_size = 5000;
 
-    graph.load_variables("result_300000.var");
+    graph.load_variables("result_250000.var");
 
     while (true)
     {
         // Optimize
         {
             Stopwatch stopwatch;
-            graph.optimize(batch_size, loss, { {input, train_x}, {target, train_y} }, 1e-3, not_update_dag);
+            graph.optimize(batch_size, loss, { {input, train_x}, {target, train_y} }, 0.003);
             stopwatch.stop();
             counter += batch_size;
             std::cout << counter << " times of back propagation finished -- "
@@ -110,6 +107,5 @@ int main()
         }
         // Save weights and biases
         if (counter % 50000 == 0) graph.save_variables("result_" + std::to_string(counter) + ".var");
-        not_update_dag = true;
     }
 }

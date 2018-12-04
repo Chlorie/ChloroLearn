@@ -39,6 +39,12 @@
     <ClCompile Include="chlorolearn\utility\utility.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="chlorolearn\graph\operators\layer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="chlorolearn\graph\operators\neural_network.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chlorolearn\basic\array.h">
@@ -90,6 +96,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="chlorolearn\utility\utility.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chlorolearn\graph\operators\layer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chlorolearn\graph\operators\neural_network.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chlorolearn\basic\propagate_struct.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

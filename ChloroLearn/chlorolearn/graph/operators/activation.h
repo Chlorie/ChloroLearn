@@ -4,7 +4,24 @@
 
 namespace chloro::operators
 {
-    Operand relu(Operand operand); // ReLU - Rectified linear unit
-    Operand sigmoid(Operand operand); // Sigmoid function
-    Operand softmax(Operand operand); // Softmax function
+    /**
+     * \brief ReLU (rectified linear unit) operation.
+     * \param operand Input operand. Could be in any shape.
+     * \return The output operand.
+     */
+    Operand relu(Operand operand);
+
+    /**
+     * \brief Sigmoid function.
+     * \param operand Input operand. Could be in any shape.
+     * \return The output operand.
+     */
+    Operand sigmoid(Operand operand);
+
+    /**
+     * \brief Softmax function.
+     * \param operand Input operand. Could be in any shape.
+     * \return The output operand.
+     */
+    Operand softmax(Operand operand);
 }

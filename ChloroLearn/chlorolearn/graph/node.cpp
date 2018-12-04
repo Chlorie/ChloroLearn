@@ -2,14 +2,6 @@
 
 namespace chloro
 {
-    void Node::get_operator_value()
-    {
-        std::vector<ArrayRef> params;
-        for (NodeRef from : from_nodes_) params.emplace_back(from.get().get_value());
-        operator_value_ = std::get<3>(content_).value(params);
-        value_ready_ = true;
-    }
-
     void Node::clear_gradient()
     {
         switch (content_.index())
@@ -34,7 +26,33 @@ namespace chloro
         case 1: return std::get<1>(content_).value(); // Constant
         case 2: return std::get<2>(content_).value(); // Variable
         case 3: // Operator
-            if (!value_ready_) get_operator_value();
+            if (!value_ready_)
+            {
+                std::vector<ArrayRef> params;
+                for (NodeRef from : from_nodes_) params.emplace_back(from.get().get_value());
+                operator_value_ = std::get<3>(content_).evaluate(params);
+                value_ready_ = true;
+            }
+            return operator_value_;
+        default: throw ArgumentOutOfRangeException("Current node is in invalid state");
+        }
+    }
+
+    const Array<double>& Node::forward_propagate()
+    {
+        switch (content_.index())
+        {
+        case 0: return std::get<0>(content_).value(); // Input
+        case 1: return std::get<1>(content_).value(); // Constant
+        case 2: return std::get<2>(content_).value(); // Variable
+        case 3: // Operator
+            if (!value_ready_)
+            {
+                std::vector<ArrayRef> params;
+                for (NodeRef from : from_nodes_) params.emplace_back(from.get().forward_propagate());
+                operator_value_ = std::get<3>(content_).forward_propagate(params);
+                value_ready_ = true;
+            }
             return operator_value_;
         default: throw ArgumentOutOfRangeException("Current node is in invalid state");
         }
@@ -57,7 +75,7 @@ namespace chloro
                 Operator& content = std::get<3>(content_);
                 std::vector<ArrayRef> params;
                 for (NodeRef from : from_nodes_) params.emplace_back(from.get().get_value());
-                std::vector<Array<double>> gradients = content.back_propogate(gradient_, params);
+                std::vector<Array<double>> gradients = content.back_propogate(gradient_, params, forward_propagate());
                 const size_t node_count = from_nodes_.size();
                 for (size_t i = 0; i < node_count; i++) from_nodes_[i].get().back_propagate(gradients[i]);
             }

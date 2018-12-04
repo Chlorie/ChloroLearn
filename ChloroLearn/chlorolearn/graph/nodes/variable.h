@@ -4,6 +4,11 @@
 
 namespace chloro
 {
+    /**
+     * \brief This kind of node content holds an array variable. The value of a variable
+     * can be updated during back-propagation, so they represents adjustable parameters
+     * in neural networks.
+     */
     class Variable final
     {
     private:

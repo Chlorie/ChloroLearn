@@ -7,11 +7,11 @@
 
 namespace chloro
 {
+    /** \brief An aggregate struct for providing a series of inputs for an \c Input node at once. */
     struct InputPack final
     {
-        Node& input_;
-        std::vector<Array<double>>& pack_;
+        Node& input; /**< Reference to the node containing an \c Input content. */
+        const std::vector<Array<double>>& pack; /**< Const reference to the vector of input arrays. */
         InputPack() = delete;
-        InputPack(Node& input, std::vector<Array<double>>& pack) :input_(input), pack_(pack) {}
     };
 }

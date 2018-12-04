@@ -16,6 +16,13 @@ namespace chloro
     using NodeRef = std::reference_wrapper<Node>;
     using ArrayRef = std::reference_wrapper<const Array<double>>;
 
+    /**
+     * \brief A class representing a node in the DAG flow graph. Users should \b not construct objects
+     * of this type manually, \b neither should users manually construct any of the four node content types
+     * to be mentioned below. Use the \a add_... methods of class \c Graph instead. Nodes can contain
+     * contents of types including \c Input, \c Constant, \c Variable and \c Operator. For more information on
+     * these four node types, please see their own documentation and implementation respectively.
+     */
     class Node final
     {
         friend class Graph;
@@ -28,10 +35,10 @@ namespace chloro
         std::vector<NodeRef> from_nodes_;
         std::vector<NodeRef> to_nodes_;
         std::variant<Input, Constant, Variable, Operator> content_;
-        void get_operator_value();
         void clear_gradient();
         void apply_gradient(double learning_rate);
         const Array<double>& get_value();
+        const Array<double>& forward_propagate();
         void back_propagate(const Array<double>& gradient);
     public:
         Node() = delete;

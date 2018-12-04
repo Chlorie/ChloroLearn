@@ -4,38 +4,47 @@
 #include <functional>
 
 #include "../../basic/array.h"
+#include "../../basic/propagate_struct.h"
 
 namespace chloro
 {
-    using InParam = const Array<double>&;
-    using InParams = const std::vector<std::reference_wrapper<const Array<double>>>&;
-    using OutParam = Array<double>;
-    using OutParams = std::vector<OutParam>;
-    using StateParam = Array<double>&;
     using Evaluation = std::function<OutParam(InParams)>;
-    using Forward = std::function<OutParam(StateParam, InParams)>;
-    using Partials = std::function<OutParams(InParam, InParams)>;
+    using Forward = std::function<OutParam(ForwardParams)>;
+    using Backward = std::function<OutParams(BackwardParams)>;
 
     class Operator final
     {
     private:
+        Array<double> state_;
         Evaluation evaluation_;
         Forward forward_;
-        Partials partials_;
+        Backward backward_;
         ArrayShape shape_;
     public:
-        template <typename T, typename U, typename V>
-        Operator(T&& evaluation, U&& forward, V&& partials, const ArrayShape& shape)
-            :evaluation_(evaluation), forward_(forward), partials_(partials), shape_(shape) {}
-        template <typename T, typename U>
-        Operator(T&& evaluation, U&& partials, const ArrayShape& shape)
-            : evaluation_(evaluation), forward_([&](StateParam, InParams params) { return evaluation_(params); }),
-            partials_(partials), shape_(shape) {}
+        Operator() = delete;
+        Operator(Evaluation&& evaluation, Backward&& backward, const ArrayShape& shape) :
+            evaluation_(evaluation),
+            forward_([eval = std::move(evaluation)](const ForwardParams params){ return eval(params.childs); }),
+            backward_(std::move(backward)),
+            shape_(shape) {}
+        Operator(Evaluation&& evaluation, Forward&& forward, Backward&& backward,
+            const ArrayShape& shape, const ArrayShape& state_shape = {}) :
+            evaluation_(std::move(evaluation)),
+            forward_(std::move(forward)),
+            backward_(std::move(backward)),
+            shape_(shape)
+        {
+            if (state_shape.empty())
+                state_ = Array<double>::zeros(shape);
+            else
+                state_ = Array<double>::zeros(state_shape);
+        }
         const ArrayShape& shape() const { return shape_; }
-        OutParam value(InParams params) const { return evaluation_(params); }
-        OutParams back_propogate(InParam gradient, InParams params) const { return partials_(gradient, params); }
-        const Evaluation& evaluation() const { return evaluation_; }
-        const Forward& forward() const { return forward_; }
-        const Partials& partials() const { return partials_; }
+        OutParam evaluate(InParams params) const { return evaluation_(params); }
+        OutParam forward_propagate(InParams childs) { return forward_({ childs, state_ }); }
+        OutParams back_propogate(InParam gradient, InParams childs, InParam value)
+        {
+            return backward_({ gradient, childs, value, state_ });
+        }
     };
 }

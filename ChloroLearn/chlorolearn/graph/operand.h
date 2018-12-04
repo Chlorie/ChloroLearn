@@ -9,6 +9,10 @@
 
 namespace chloro
 {
+    /**
+     * \brief This struct serves as the internal implementation for the \c Operand class.
+     * Users should not use this struct explicitly.
+     */
     struct ListedOperator final
     {
         using Ref = std::variant<size_t, NodeRef>;
@@ -20,9 +24,14 @@ namespace chloro
 
     // ReSharper disable CppNonExplicitConvertingConstructor
 
-    // The Operand class is sort of a syntax tree, this is for inserting multiple operators
-    // together into a graph, like inserting an expression "x * (x + 2)", which composes
-    // of two new operator nodes
+    /**
+     * \brief This class serves as a syntax tree for inserting multiple \c Operator objects
+     * together into the same graph. For example, the expression \a x*(y+2) composes of two
+     * operators, the addition and the multiplication, together with references to nodes \a x
+     * and \a y. Explicitly usage of this class is not recommended, except when you're trying
+     * to implement more operators by yourself. Explicit construction of this class is not
+     * recommended as well, since only rvalue references to this object is used in this library.
+     */
     class Operand final
     {
         using Func = std::function<void(ListedOperator&)>;

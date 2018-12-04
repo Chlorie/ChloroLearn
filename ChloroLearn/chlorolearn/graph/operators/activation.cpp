@@ -7,8 +7,12 @@ namespace chloro::operators
     Operand relu(Operand operand)
     {
         Operator op([](InParams params) { return params[0].get().apply([](const double v) { return v > 0 ? v : 0; }); },
-            [](InParam gradient, InParams params)
-            { return OutParams{ gradient * params[0].get().apply([](const double v) { return v > 0 ? 1 : 0; }) }; },
+            [](const BackwardParams params)
+            {
+                InParam param = params.childs[0];
+                InParam gradient = params.gradient;
+                return OutParams{ gradient * param.apply([](const double v) { return v > 0 ? 1 : 0; }) };
+            },
             operand.shape());
         return Operand::join(std::move(op), { std::move(operand) });
     }
@@ -21,16 +25,12 @@ namespace chloro::operators
                 return params[0].get().apply([](const double v)
                     { return 1 / (1 + std::exp(-v)); });
             },
-            [](InParam gradient, InParams params)
+            [](const BackwardParams params)
             {
                 return OutParams
                 {
-                    gradient * params[0].get().apply(
-                    [](const double v)
-                    {
-                        const double sig = 1 / (1 + std::exp(-v));
-                        return sig * (1 - sig);
-                    })
+                    params.gradient * params.value.apply([](const double v)
+                        { return v * (1 - v); })
                 };
             }, operand.shape());
         return Operand::join(std::move(op), { std::move(operand) });
@@ -43,19 +43,23 @@ namespace chloro::operators
             {
                 InParam param = params[0];
                 const double max = param.accumulate(param[0], [](const double x, const double y) { return x > y ? x : y; });
-                Array<double> aug_exp = (param - max).apply(std::exp<double, double>);
+                Array aug_exp = (param - max).apply(std::exp<double, double>);
                 const double sum = aug_exp.accumulate(0);
                 return aug_exp /= sum;
             },
-            [](InParam gradient, InParams params)
+            [](const BackwardParams params)
             {
-                InParam param = params[0];
-                const double max = param.accumulate(param[0], [](const double x, const double y) { return x > y ? x : y; });
-                Array<double> aug_exp = (param - max).apply(std::exp<double, double>);
-                const double sum = aug_exp.accumulate(0);
-                Array<double> exp = param.apply(std::exp<double, double>);
-                const Array<double> term = 1 - std::move(aug_exp) / sum;
-                return OutParams{ gradient * std::move(exp) * term };
+                InParam gradient = params.gradient;
+                const Array<double>& value = params.value;
+                Array result = Array<double>::zeros(value.shape());
+                const size_t size = value.size();
+                for (size_t i = 0; i < size; i++)
+                    for (size_t j = 0; j < size; j++)
+                    {
+                        const double jacobian = value[i] * ((i == j) - value[j]);
+                        result[i] += gradient[j] * jacobian;
+                    }
+                return OutParams{ result };
             }, operand.shape());
         return Operand::join(std::move(op), { std::move(operand) });
     }

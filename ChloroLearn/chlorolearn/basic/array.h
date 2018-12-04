@@ -9,11 +9,20 @@
 
 #include "exceptions.h"
 
+// ReSharper disable CppNonExplicitConvertingConstructor
+
 namespace chloro
 {
     using ArrayShape = std::vector<size_t>;
+    using DefaultableArrayShape = std::vector<int>;
     inline static const ArrayShape scalar_shape{ 1 };
 
+    /**
+     * \brief A flexible multi-dimensional generic array that supports basic operations
+     * and other functions like reshaping. Specifically, this type is broadly used in the
+     * other parts of this library, more specifically, \c Array<double>.
+     * \tparam T Type of data stored in the \c Array, should be an arithmatic type.
+     */
     template <typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
     class Array final
     {
@@ -31,15 +40,15 @@ namespace chloro
         }
 
     public:
-        // Typedefs
-        using ValueType = T;
-
         // Constructors
-        Array() :data_(0), shape_{ 0 } {} // Default constructs an empty array with no data space
-        Array(const Array&) = default; // Copy constructor
-        Array(Array&&) = default; // Move constructor
-        Array(const T value) :data_{ value }, shape_{ 1 } {}
+
+        Array() :data_(0), shape_{ 0 } {} /**< \brief Default constructs an empty array with no space for data. */
+        Array(const Array&) = default; /**< \brief Copy constructor. */
+        Array(Array&&) = default; /**< \brief Move constructor. */
+        Array(const T value) :data_{ value }, shape_{ 1 } {} /**< \brief Construct an \c Array of shape 1 with a given value. */
+        /** \brief Construct a row vector array with an \c std::initializer_list<T>. */
         Array(std::initializer_list<T> list) :data_(list), shape_{ list.size() } {}
+        /** \brief Construct recursively an array with an \c std::initializer_list<Array>. */
         Array(std::initializer_list<Array> lists)
         {
             bool first = true;
@@ -54,13 +63,17 @@ namespace chloro
             }
             shape_.insert(shape_.begin(), lists.size());
         }
-        template <typename U, typename = std::enable_if<std::is_convertible_v<U, T>>> // Implicit conversion
+        /** \brief Implicit converting constructor from an array of a different data type. */
+        template <typename U, typename = std::enable_if<std::is_convertible_v<U, T>>>
         Array(const Array<U>& other) : data_(other.data_.begin(), other.data_.end()), shape_(other.shape_) {}
-        template <typename U, typename = std::enable_if<std::is_convertible_v<U, T>>> // Implicit conversion
+        /** \brief Implicit move converting constructor from an array of a different data type. */
+        template <typename U, typename = std::enable_if<std::is_convertible_v<U, T>>>
         Array(Array<U>&& other) : data_(other.data_.begin(), other.data_.end()), shape_(std::move(other.shape_)) {}
 
         // Construct helpers
-        static Array zeros(const ArrayShape& shape) // Constructs an array with given dimensions
+
+        /** \brief Constructs an array filled with zeros with the given shape. */
+        static Array zeros(const ArrayShape& shape)
         {
             size_t size = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<size_t>());
             Array result;
@@ -68,7 +81,11 @@ namespace chloro
             result.data_.resize(size);
             return result;
         }
-        static Array random(const ArrayShape& shape) // Constructs an array with standard normally distributed numbers
+        /**
+         * \brief Constructs an array filled with random numbers (normally distributed with mean of 0
+         * and standard deviation of 1) with the given shape.
+         */
+        static Array random(const ArrayShape& shape)
         {
             static std::mt19937 generator{ std::random_device()() };
             static std::normal_distribution distribution;
@@ -79,7 +96,13 @@ namespace chloro
             for (size_t i = 0; i < size; i++) result.data_.push_back(distribution(generator));
             return result;
         }
-        static Array repeats(const T repeat, const ArrayShape& shape) // Repeats a value
+        /**
+         * \brief Constructs an array filled with a specific value with the given shape.
+         * \param repeat The repeated value.
+         * \param shape The shape of the array.
+         * \return The constructed array.
+         */
+        static Array repeats(const T repeat, const ArrayShape& shape)
         {
             size_t size = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<size_t>());
             Array result;
@@ -89,8 +112,11 @@ namespace chloro
         }
 
         // Assign operators
-        Array& operator=(const Array&) = default;
-        Array& operator=(Array&&) = default;
+
+        Array& operator=(const Array&) = default; /**< \brief Copy the values of another array into this one. */
+        Array& operator=(Array&&) = default; /**< \brief Move the contents of another array into this one. */
+
+        /** \brief Copy the values in a vector to this array. */
         Array& operator=(const std::vector<T>& data)
         {
             if (data.size() == data_.size())
@@ -99,6 +125,7 @@ namespace chloro
                 throw MismatchedSizesException("Size of the vector doesn't match that of the array");
             return *this;
         }
+        /** \brief Move the values in a vector into this array. */
         Array& operator=(std::vector<T>&& data)
         {
             if (data.size() == data_.size())
@@ -109,17 +136,25 @@ namespace chloro
         }
 
         // Properties
+
+        /** \brief Get total element amount of the array. */
         size_t size() const { return data_.size(); }
+        /** \brief Get the length of the array on a specific dimension. */
         size_t length_at(const size_t dimension) const
         {
             if (dimension >= shape_.size()) throw ArgumentOutOfRangeException("Index out of range");
             return shape_[dimension];
         }
+        /** \brief Get the dimension amount of the array. */
         size_t dimension() const { return shape_.size(); }
+        /** \brief Get the shape of the array. */
         const ArrayShape& shape() const { return shape_; }
 
         // Accessors
+
+        /** \brief Get a read only \c std::vector containing the values in the array. */
         const std::vector<T>& data() const { return data_; }
+        /** \brief Get a reference to the value at the given index. */
         T& at(const std::initializer_list<size_t>& list) // Specify the index by an initializer_list
         {
             if (list.size() != shape_.size())
@@ -134,6 +169,7 @@ namespace chloro
             }
             return data_[index];
         }
+        /** \brief Get a const reference to the value at the given index. */
         const T& at(const std::initializer_list<size_t>& list) const // Const version
         {
             if (list.size() != shape_.size())
@@ -148,29 +184,30 @@ namespace chloro
             }
             return data_[index];
         }
+        /** \brief Get a reference to the value at the given index. */
         T& operator()(const std::initializer_list<size_t>& list) { return at(list); }
+        /** \brief Get a const reference to the value at the given index. */
         const T& operator()(const std::initializer_list<size_t>& list) const { return at(list); }
+        /**
+         * \brief Get a reference to the value at the given index using single indexing.
+         * Notice that this method does not check the validity of the input.
+         */
         T& operator[](const size_t index) { return data_[index]; }
+        /**
+         * \brief Get a const reference to the value at the given index using single indexing.
+         * Notice that this method does not check the validity of the input.
+         */
         const T& operator[](const size_t index) const { return data_[index]; }
-        void set_values(const std::vector<T>& values)
-        {
-            if (values.size() != data_.size())
-                throw MismatchedSizesException("New value and old value are not of the same size");
-            data_ = values;
-        }
-        void set_values(std::vector<T>&& values)
-        {
-            if (values.size() != data_.size())
-                throw MismatchedSizesException("New value and old value are not of the same size");
-            data_ = std::move(values);
-        }
 
         // Element-wise operators
+
+        /** \brief Add a value to each of the values in the array. */
         Array& operator+=(T other)
         {
             for (T& value : data_) value += other;
             return *this;
         }
+        /** \brief Performs an element-wise add operation. */
         Array& operator+=(const Array& other)
         {
             check_size_match(other);
@@ -178,11 +215,13 @@ namespace chloro
             for (size_t i = 0; i < size; i++) data_[i] += other.data_[i];
             return *this;
         }
+        /** \brief Subtract a value from each of the values in the array. */
         Array& operator-=(T other)
         {
             for (T& value : data_) value -= other;
             return *this;
         }
+        /** \brief Performs an element-wise subtract operation. */
         Array& operator-=(const Array& other)
         {
             check_size_match(other);
@@ -190,11 +229,13 @@ namespace chloro
             for (size_t i = 0; i < size; i++) data_[i] -= other.data_[i];
             return *this;
         }
+        /** \brief Multiply a value to each of the values in the array. */
         Array& operator*=(T other)
         {
             for (T& value : data_) value *= other;
             return *this;
         }
+        /** \brief Performs an element-wise multiply operation. */
         Array& operator*=(const Array& other)
         {
             check_size_match(other);
@@ -202,11 +243,13 @@ namespace chloro
             for (size_t i = 0; i < size; i++) data_[i] *= other.data_[i];
             return *this;
         }
+        /** \brief Divide each of the values by a value in the array. */
         Array& operator/=(T other)
         {
             for (T& value : data_) value /= other;
             return *this;
         }
+        /** \brief Performs an element-wise divide operation. */
         Array& operator/=(const Array& other)
         {
             check_size_match(other);
@@ -214,12 +257,14 @@ namespace chloro
             for (size_t i = 0; i < size; i++) data_[i] /= other.data_[i];
             return *this;
         }
+        /** \brief Get the element-wise negation of this array. */
         Array operator-() const&
         {
             Array result(*this);
             for (T& value : result.data_) value = -value;
             return result;
         }
+        /** \brief Negates every component of this temporary array and returning a temporary \c *this. */
         Array operator-() &&
         {
             for (T& value : data_) value = -value;
@@ -227,6 +272,7 @@ namespace chloro
         }
 
         // Friend operators
+
         friend Array operator+(T value, const Array& array)
         {
             Array result(array);
@@ -309,13 +355,19 @@ namespace chloro
         friend Array operator/(Array&& left, Array&& right) { return std::move(left /= right); }
 
         // Miscellaneous methods
-        void clear() // Clear all elements to default value
+
+        /** \brief Clear all the values to default value of \c T. */
+        void clear()
         {
             const size_t size = data_.size();
             data_.clear();
             data_.resize(size);
         }
-        void reshape(const ArrayShape& shape)
+        /**
+         * \brief Reshape the array to a different shape. You can use auto calculation (-1 for the
+         * auto length calculation) on at most one dimension.
+         */
+        void reshape(const DefaultableArrayShape& shape)
         {
             int automatic = -1;
             size_t size = 1;
@@ -353,6 +405,7 @@ namespace chloro
                 shape_[automatic] = data_size / size;
             }
         }
+        /** \brief Force reshaping the array into another shape. Padding and truncating might happen. */
         void force_reshape(const ArrayShape& shape)
         {
             shape_.clear();
@@ -365,12 +418,22 @@ namespace chloro
             }
             data_.resize(size);
         }
+        /**
+         * \brief Apply a function element-wise in place.
+         * \param function A function, taking a \c T as parameter, and returning another \c T as result.
+         * \return The result array, which is just \c *this.
+         */
         template <typename Func>
         Array& apply_in_place(Func&& function)
         {
             for (T& value : data_) value = function(value);
             return *this;
         }
+        /**
+         * \brief Apply a function element-wise, save the result in another array and return.
+         * \param function A function, taking a \c T as parameter, and returning another \c T as result.
+         * \return The result array.
+         */
         template <typename Func>
         Array apply(Func&& function) const
         {
@@ -378,6 +441,12 @@ namespace chloro
             for (T& value : result.data_) value = function(value);
             return result;
         }
+        /**
+         * \brief Calls the standard \c std::accumulate function on the array.
+         * \param initial Initial value of the accumulation.
+         * \param function Specify another function other than the default \c std::plus<T>.
+         * \return The result of the accumulation.
+         */
         template <typename Func = std::plus<T>>
         T accumulate(T initial, Func&& function = std::plus<T>()) const
         {

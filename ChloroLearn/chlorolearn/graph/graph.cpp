@@ -21,17 +21,24 @@ namespace chloro
                 update_dag(from.get());
     }
 
-    Node& Graph::add_input(const ArrayShape& size)
+    void Graph::forward_propagate(Node& node, std::initializer_list<InputParam> input_params)
     {
-        nodes_.emplace_back(Input(size));
+        for (const InputParam& input_param : input_params) input(input_param.input, input_param.value);
+        for (Node& graph_node : nodes_) graph_node.value_ready_ = false;
+        node.forward_propagate();
+    }
+
+    Node& Graph::add_input(const ArrayShape& shape)
+    {
+        nodes_.emplace_back(Input(shape));
         return nodes_.back();
     }
 
-    Node& Graph::add_variable(const ArrayShape& size)
+    Node& Graph::add_variable(const ArrayShape& shape)
     {
-        nodes_.emplace_back(Variable(size));
+        nodes_.emplace_back(Variable(shape));
         Node& node = nodes_.back();
-        node.gradient_ = Array<double>::zeros(size);
+        node.gradient_ = Array<double>::zeros(shape);
         return node;
     }
 
@@ -43,7 +50,7 @@ namespace chloro
 
     Node& Graph::add_constant(Array<double>&& array)
     {
-        nodes_.emplace_back(Constant(array));
+        nodes_.emplace_back(Constant(std::move(array)));
         return nodes_.back();
     }
 
@@ -68,7 +75,7 @@ namespace chloro
 
     const Array<double>& Graph::get_value(Node& node, const std::initializer_list<InputParam> input_params)
     {
-        for (const InputParam& input_param : input_params) input(input_param.input_, input_param.value_);
+        for (const InputParam& input_param : input_params) input(input_param.input, input_param.value);
         for (Node& graph_node : nodes_) graph_node.value_ready_ = false;
         return node.get_value();
     }
@@ -91,13 +98,13 @@ namespace chloro
             node.clear_gradient();
         }
         update_dag(target);
-        get_value(target, input_params);
+        forward_propagate(target, input_params);
         target.back_propagate(Array<double>::repeats(1.0, target.shape()));
         for (Node& node : nodes_) node.apply_gradient(learning_rate);
     }
 
     void Graph::optimize(const size_t batch_size, Node& target, const std::initializer_list<InputPack> input_pack,
-        const double learning_rate, const bool not_update_dag)
+        const double learning_rate)
     {
         if (target.content_.index() != 3) throw IllegalOperationException("Target should be an operator");
         for (Node& node : nodes_) node.updated_time_ = 0;
@@ -105,17 +112,14 @@ namespace chloro
         bool first = true;
         for (const InputPack& item : input_pack)
         {
-            if (first) pack_size = item.pack_.size();
-            if (pack_size != item.pack_.size()) throw MismatchedSizesException("Input packs should be of the same size");
+            if (first) pack_size = item.pack.size();
+            if (pack_size != item.pack.size()) throw MismatchedSizesException("Input packs should be of the same size");
             first = false;
         }
         static std::mt19937 generator{ std::random_device()() };
         const std::uniform_int_distribution<> dist(0, pack_size == 0 ? 0 : pack_size - 1);
-        if (!not_update_dag)
-        {
-            for (Node& node : nodes_) node.update_time_ = 0;
-            update_dag(target);
-        }
+        for (Node& node : nodes_) node.update_time_ = 0;
+        update_dag(target);
         const Array<double> ones = Array<double>::repeats(1.0, target.shape());
         for (size_t i = 0; i < batch_size; i++)
         {
@@ -127,9 +131,9 @@ namespace chloro
             if (pack_size != 0)
             {
                 const int index = dist(generator);
-                for (const InputPack& item : input_pack) input(item.input_, item.pack_[index]);
+                for (const InputPack& item : input_pack) input(item.input, item.pack[index]);
             }
-            target.get_value();
+            target.forward_propagate();
             target.back_propagate(ones);
             for (Node& node : nodes_) node.apply_gradient(learning_rate);
         }
@@ -162,7 +166,7 @@ namespace chloro
                 Array<double> array = Array<double>::zeros(shape);
                 std::vector<double> values;
                 read_vector(stream, values);
-                array.set_values(std::move(values));
+                array = std::move(values);
                 variable.set_value(std::move(array));
             }
         stream.close();

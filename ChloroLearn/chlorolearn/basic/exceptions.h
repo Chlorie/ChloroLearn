@@ -24,6 +24,7 @@ namespace chloro
     CHLORO_EXCEPTION(MismatchedSizesException);
     CHLORO_EXCEPTION(IllegalArgumentException);
     CHLORO_EXCEPTION(IllegalOperationException);
+    CHLORO_EXCEPTION(NotImplementedException);
 
 #undef CHLORO_EXCEPTION
 }

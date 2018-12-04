@@ -4,6 +4,12 @@
 
 namespace chloro
 {
+    /**
+     * \brief This kind of node content holds a placeholder of an input array.
+     * Before evaluating and back-propagating, the user should use input packs
+     * or input parameters to specify the values of \c Input nodes, or the result
+     * of the evaluation will be undefined.
+     */
     class Input final
     {
     private:
