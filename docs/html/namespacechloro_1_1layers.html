@@ -78,25 +78,173 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a5eea367bac33b6066b97c528693c3bbe"><td class="memItemLeft" align="right" valign="top"><a id="a5eea367bac33b6066b97c528693c3bbe"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>Activation</b> = std::function&lt; <a class="el" href="classchloro_1_1_operand.html">Operand</a>(<a class="el" href="classchloro_1_1_operand.html">Operand</a>)&gt;</td></tr>
+<tr class="memitem:a5eea367bac33b6066b97c528693c3bbe"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1layers.html#a5eea367bac33b6066b97c528693c3bbe">Activation</a> = std::function&lt; <a class="el" href="classchloro_1_1_operand.html">Operand</a>(<a class="el" href="classchloro_1_1_operand.html">Operand</a>)&gt;</td></tr>
 <tr class="separator:a5eea367bac33b6066b97c528693c3bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae1412c750e86ff9db20529fcccc06321"><td class="memItemLeft" align="right" valign="top">NodeRef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1layers.html#ae1412c750e86ff9db20529fcccc06321">dense_layer</a> (<a class="el" href="classchloro_1_1_graph.html">Graph</a> &amp;graph, NodeRef input, size_t output_rows, Activation &amp;&amp;activation=nullptr)</td></tr>
+<tr class="memitem:ae1412c750e86ff9db20529fcccc06321"><td class="memItemLeft" align="right" valign="top">NodeRef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1layers.html#ae1412c750e86ff9db20529fcccc06321">dense_layer</a> (<a class="el" href="classchloro_1_1_graph.html">Graph</a> &amp;graph, NodeRef input, size_t output_rows, <a class="el" href="namespacechloro_1_1layers.html#a5eea367bac33b6066b97c528693c3bbe">Activation</a> &amp;&amp;activation=nullptr)</td></tr>
 <tr class="memdesc:ae1412c750e86ff9db20529fcccc06321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a dense layer to the given graph.  <a href="#ae1412c750e86ff9db20529fcccc06321">More...</a><br /></td></tr>
 <tr class="separator:ae1412c750e86ff9db20529fcccc06321"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2400519f67c5f4e29d18117ecc08a197"><td class="memItemLeft" align="right" valign="top"><a id="a2400519f67c5f4e29d18117ecc08a197"></a>
-NodeRef&#160;</td><td class="memItemRight" valign="bottom"><b>convolutional_2d</b> (<a class="el" href="classchloro_1_1_graph.html">Graph</a> &amp;graph, const NodeRef input, const size_t kernel_size, const size_t filter_amount, const size_t stride)</td></tr>
-<tr class="separator:a2400519f67c5f4e29d18117ecc08a197"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a839a51f8993cacee19ed6417e9a3d45e"><td class="memItemLeft" align="right" valign="top"><a id="a839a51f8993cacee19ed6417e9a3d45e"></a>
-NodeRef&#160;</td><td class="memItemRight" valign="bottom"><b>convolutional_2d</b> (<a class="el" href="classchloro_1_1_graph.html">Graph</a> &amp;graph, const NodeRef input, const ArrayShape &amp;kernel_size, const size_t filter_amount, const size_t stride)</td></tr>
-<tr class="separator:a839a51f8993cacee19ed6417e9a3d45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e8fcc82c888c4099fdfbd335d438737"><td class="memItemLeft" align="right" valign="top">NodeRef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1layers.html#a9e8fcc82c888c4099fdfbd335d438737">convolutional_2d</a> (<a class="el" href="classchloro_1_1_graph.html">Graph</a> &amp;graph, NodeRef input, size_t kernel_size, size_t filter_amount, size_t stride=1, <a class="el" href="namespacechloro_1_1layers.html#a5eea367bac33b6066b97c528693c3bbe">Activation</a> &amp;&amp;activation=nullptr)</td></tr>
+<tr class="memdesc:a9e8fcc82c888c4099fdfbd335d438737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a 2D convolutional layer to the given graph.  <a href="#a9e8fcc82c888c4099fdfbd335d438737">More...</a><br /></td></tr>
+<tr class="separator:a9e8fcc82c888c4099fdfbd335d438737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd716b25e208700c96210934001b2aa6"><td class="memItemLeft" align="right" valign="top">NodeRef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1layers.html#abd716b25e208700c96210934001b2aa6">convolutional_2d</a> (<a class="el" href="classchloro_1_1_graph.html">Graph</a> &amp;graph, NodeRef input, const ArrayShape &amp;kernel_size, size_t filter_amount, const ArrayShape &amp;stride={ 1, 1 }, <a class="el" href="namespacechloro_1_1layers.html#a5eea367bac33b6066b97c528693c3bbe">Activation</a> &amp;&amp;activation=nullptr)</td></tr>
+<tr class="memdesc:abd716b25e208700c96210934001b2aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a 2D convolutional layer to the given graph.  <a href="#abd716b25e208700c96210934001b2aa6">More...</a><br /></td></tr>
+<tr class="separator:abd716b25e208700c96210934001b2aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Helper functions for adding neural network layers to a graph. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+<p>A neural network layer often consists of multiple nodes, for example, a dense layer (fully connected layer) consists of two variable nodes for weights and bias, two operator nodes for matrix multiplication and addition, and possibly another operator node for the activation function. These functions are to simplify the process of adding these nodes to a graph. </p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a5eea367bac33b6066b97c528693c3bbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eea367bac33b6066b97c528693c3bbe">&#9670;&nbsp;</a></span>Activation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacechloro_1_1layers.html#a5eea367bac33b6066b97c528693c3bbe">chloro::layers::Activation</a> = typedef std::function&lt;<a class="el" href="classchloro_1_1_operand.html">Operand</a>(<a class="el" href="classchloro_1_1_operand.html">Operand</a>)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Activation function (operator). </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a9e8fcc82c888c4099fdfbd335d438737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e8fcc82c888c4099fdfbd335d438737">&#9670;&nbsp;</a></span>convolutional_2d() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodeRef chloro::layers::convolutional_2d </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_graph.html">Graph</a> &amp;&#160;</td>
+          <td class="paramname"><em>graph</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NodeRef&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>kernel_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>filter_amount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>stride</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacechloro_1_1layers.html#a5eea367bac33b6066b97c528693c3bbe">Activation</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>activation</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a 2D convolutional layer to the given graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">graph</td><td>The graph to add a layer into </td></tr>
+    <tr><td class="paramname">input</td><td>A 3D array of shape (rows x columns x channels) as the input. </td></tr>
+    <tr><td class="paramname">kernel_size</td><td>Side length of the kernel. </td></tr>
+    <tr><td class="paramname">filter_amount</td><td>The amount of filters. </td></tr>
+    <tr><td class="paramname">stride</td><td>Convolution stride, same for the two dimensions. </td></tr>
+    <tr><td class="paramname">activation</td><td>Specifies which activation function is used, defaults to nullptr (no activation). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A node reference to the final output of the added layer. </dd></dl>
+
+</div>
+</div>
+<a id="abd716b25e208700c96210934001b2aa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd716b25e208700c96210934001b2aa6">&#9670;&nbsp;</a></span>convolutional_2d() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodeRef chloro::layers::convolutional_2d </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_graph.html">Graph</a> &amp;&#160;</td>
+          <td class="paramname"><em>graph</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NodeRef&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayShape &amp;&#160;</td>
+          <td class="paramname"><em>kernel_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>filter_amount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayShape &amp;&#160;</td>
+          <td class="paramname"><em>stride</em> = <code>{&#160;1,&#160;1&#160;}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacechloro_1_1layers.html#a5eea367bac33b6066b97c528693c3bbe">Activation</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>activation</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a 2D convolutional layer to the given graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">graph</td><td>The graph to add a layer into </td></tr>
+    <tr><td class="paramname">input</td><td>A 3D array of shape (rows x columns x channels) as the input. </td></tr>
+    <tr><td class="paramname">kernel_size</td><td>Shape of the kernel, should be a 2D array shape. </td></tr>
+    <tr><td class="paramname">filter_amount</td><td>The amount of filters. </td></tr>
+    <tr><td class="paramname">stride</td><td>Convolution stride, should be a 2D array shape. </td></tr>
+    <tr><td class="paramname">activation</td><td>Specifies which activation function is used, defaults to nullptr (no activation). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A node reference to the final output of the added layer. </dd></dl>
+
+</div>
+</div>
 <a id="ae1412c750e86ff9db20529fcccc06321"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1412c750e86ff9db20529fcccc06321">&#9670;&nbsp;</a></span>dense_layer()</h2>
 
@@ -124,7 +272,7 @@ NodeRef&#160;</td><td class="memItemRight" valign="bottom"><b>convolutional_2d</
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Activation &amp;&amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacechloro_1_1layers.html#a5eea367bac33b6066b97c528693c3bbe">Activation</a> &amp;&amp;&#160;</td>
           <td class="paramname"><em>activation</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>

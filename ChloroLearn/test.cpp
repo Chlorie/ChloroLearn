@@ -9,6 +9,7 @@
 #include "chlorolearn/utility/stopwatch.h"
 #include "chlorolearn/utility/utility.h"
 #include "chlorolearn/graph/operators/activation.h"
+#include "chlorolearn/graph/operators/neural_network.h"
 #include "chlorolearn/graph/operators/layer.h"
 #include "chlorolearn/graph/operators/loss.h"
 

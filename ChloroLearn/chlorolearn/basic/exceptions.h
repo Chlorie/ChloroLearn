@@ -4,12 +4,12 @@
 
 namespace chloro
 {
-    // Base class
+    /** \brief Base class for all the exceptions in this library. */
     class ChloroException : public std::exception
     {
     public:
-        ChloroException() = default;
-        explicit ChloroException(const char* message) : std::exception(message) {}
+        ChloroException() = default; /**< \brief Default constructor. */
+        explicit ChloroException(const char* message) : std::exception(message) {} /**< Construct using a message string. */
     };
 
 #define CHLORO_EXCEPTION(name) class name : public ChloroException \

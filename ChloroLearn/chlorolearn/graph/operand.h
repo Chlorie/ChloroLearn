@@ -11,13 +11,15 @@ namespace chloro
 {
     /**
      * \brief This struct serves as the internal implementation for the \c Operand class.
-     * Users should not use this struct explicitly.
+     * \remark Users should not use this struct explicitly.
      */
     struct ListedOperator final
     {
+        /** \brief A union of either a \c size_t value (operator reference) or a \c NodeRef. */
         using Ref = std::variant<size_t, NodeRef>;
-        Operator content;
-        std::vector<Ref> from_nodes;
+        Operator content; /**< \brief The operator that is listed. */
+        std::vector<Ref> from_nodes; /**< \brief Reference to the nodes connected to this operator. */
+        /** \brief Move construct a listed operator. */
         ListedOperator(Operator&& content, std::vector<Ref>&& from_nodes)
             :content(std::move(content)), from_nodes(std::move(from_nodes)) {}
     };
@@ -26,11 +28,13 @@ namespace chloro
 
     /**
      * \brief This class serves as a syntax tree for inserting multiple \c Operator objects
-     * together into the same graph. For example, the expression \a x*(y+2) composes of two
-     * operators, the addition and the multiplication, together with references to nodes \a x
-     * and \a y. Explicitly usage of this class is not recommended, except when you're trying
-     * to implement more operators by yourself. Explicit construction of this class is not
-     * recommended as well, since only rvalue references to this object is used in this library.
+     * together into the same graph.
+     * \details For example, the expression <em>x*(y+2)</em> composes of two <tt>Operator</tt>s, the
+     * addition and the multiplication, together with references to nodes \a x and \a y. Explicitly
+     * usage of this class is not recommended, except when you're trying to implement more operators
+     * by yourself. In such cases, please refer to the implementations in namespace \c chloro::operators.
+     * Explicit construction of this class is not recommended as well, since only rvalue references to
+     * this object is used in this library.
      */
     class Operand final
     {
@@ -49,11 +53,30 @@ namespace chloro
         void offset_all(const size_t value) { for (ListedOperator& item : data_) offset(item.from_nodes, value); }
         Operand() = default;
     public:
-        Operand(const Operand&) = default;
-        Operand(Operand&&) = default;
+        Operand(const Operand&) = default; /**< \brief Copy constructor. */
+        Operand(Operand&&) = default; /**< \brief Move constructor. */
+        /**
+         * \brief Construct an operand with only a node reference but no operators implicitly
+         * using a node reference.
+         */
         Operand(const NodeRef ref) :ref_(ref) {}
+        /**
+         * \brief Get the shape of the last operator listed in this operand. If there's not any,
+         * return the shape of the last node reference.
+         */
         const ArrayShape& shape() const { return data_.empty() ? ref_->get().shape() : data_.back().content.shape(); }
+        /** \brief Call a function on each of the operators listed in this object. */
         void for_each(Func&& func) { for (ListedOperator& item : data_) func(item); }
+        /**
+         * \brief Join one or more operands together with an operator.
+         * \details For example, for <em>x+y*z</em>, the plus operator joins two operands together:
+         * The operand containing only a \c NodeRef \a x, together with the operand containing an 
+         * multiplication operator and two <tt>NodeRef</tt>s to \a y and \a z. For more information
+         * about this, see implementations in namespace \c chloro::operators.
+         * \param value The operator joining the given operands.
+         * \param childs The operands to join.
+         * \return Joined operand.
+         */
         static Operand join(Operator&& value, std::initializer_list<Operand> childs)
         {
             std::vector<Operand> operands(std::make_move_iterator(childs.begin()), std::make_move_iterator(childs.end()));

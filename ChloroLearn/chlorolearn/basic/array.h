@@ -19,8 +19,9 @@ namespace chloro
 
     /**
      * \brief A flexible multi-dimensional generic array that supports basic operations
-     * and other functions like reshaping. Specifically, this type is broadly used in the
-     * other parts of this library, more specifically, \c Array<double>.
+     * and other functions like reshaping.
+     * \details Specifically, this type is broadly used in the
+     * other parts of this library, more specifically, \c double version of this type.
      * \tparam T Type of data stored in the \c Array, should be an arithmatic type.
      */
     template <typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
@@ -190,12 +191,12 @@ namespace chloro
         const T& operator()(const std::initializer_list<size_t>& list) const { return at(list); }
         /**
          * \brief Get a reference to the value at the given index using single indexing.
-         * Notice that this method does not check the validity of the input.
+         * \remark Notice that this method does not check the validity of the input.
          */
         T& operator[](const size_t index) { return data_[index]; }
         /**
          * \brief Get a const reference to the value at the given index using single indexing.
-         * Notice that this method does not check the validity of the input.
+         * \remark Notice that this method does not check the validity of the input.
          */
         const T& operator[](const size_t index) const { return data_[index]; }
 
@@ -273,6 +274,8 @@ namespace chloro
 
         // Friend operators
 
+        /**@{*/
+        /** \brief Performs an element-wise add operation. */
         friend Array operator+(T value, const Array& array)
         {
             Array result(array);
@@ -289,6 +292,9 @@ namespace chloro
         friend Array operator+(const Array& left, Array&& right) { return right += left; }
         friend Array operator+(Array&& left, const Array& right) { return std::move(left += right); }
         friend Array operator+(Array&& left, Array&& right) { return std::move(left += right); }
+        /**@}*/
+        /**@{*/
+        /** \brief Performs an element-wise subtract operation. */
         friend Array operator-(T value, const Array& array)
         {
             Array result(-array);
@@ -309,6 +315,9 @@ namespace chloro
         friend Array operator-(const Array& left, Array&& right) { return std::move(-right += left); }
         friend Array operator-(Array&& left, const Array& right) { return std::move(left -= right); }
         friend Array operator-(Array&& left, Array&& right) { return std::move(left -= right); }
+        /**@}*/
+        /**@{*/
+        /** \brief Performs an element-wise multiply operation. */
         friend Array operator*(T value, const Array& array)
         {
             Array result(array);
@@ -325,6 +334,9 @@ namespace chloro
         friend Array operator*(const Array& left, Array&& right) { return std::move(right *= left); }
         friend Array operator*(Array&& left, const Array& right) { return std::move(left *= right); }
         friend Array operator*(Array&& left, Array&& right) { return std::move(left *= right); }
+        /**@}*/
+        /**@{*/
+        /** \brief Performs an element-wise divide operation. */
         friend Array operator/(T value, const Array& array)
         {
             Array result = Array<T>::repeats(value, array.shape_);
@@ -353,6 +365,7 @@ namespace chloro
         }
         friend Array operator/(Array&& left, const Array& right) { return std::move(left /= right); }
         friend Array operator/(Array&& left, Array&& right) { return std::move(left /= right); }
+        /**@}*/
 
         // Miscellaneous methods
 
@@ -454,6 +467,8 @@ namespace chloro
         }
 
         // Stream output
+
+        /** \brief Output an array into an \c std::ostream. */
         friend std::ostream& operator<<(std::ostream& stream, const Array& array)
         {
             std::vector<size_t> periods(array.shape_);

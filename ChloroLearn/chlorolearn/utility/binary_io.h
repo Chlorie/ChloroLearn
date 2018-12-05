@@ -19,12 +19,13 @@ namespace chloro
         stream.read(reinterpret_cast<char*>(&value), sizeof(T));
     }
     /**
-     * \brief Read an \c std::vector from a binary stream. The binary structure of the vector
-     * in the stream should be a \c size_t value \a size indicating the size of the vector, followed
-     * by \a size values of type \c T, which are the contents of the vector.
+     * \brief Read an \c std::vector from a binary stream. 
      * \tparam T Value type of the vector to be read
      * \param stream The stream from which the value is read
      * \param values A non-const reference for returning the read data.
+     * \remark The binary structure of the vector in the stream should be a \c size_t value 
+     * \a size indicating the size of the vector, followed by \a size values of type \c T, 
+     * which are the contents of the vector.
      */
     template <typename T>
     void read_vector(std::ifstream& stream, std::vector<T>& values)
@@ -49,8 +50,9 @@ namespace chloro
         stream.write(reinterpret_cast<const char*>(&value), sizeof(T));
     }
     /**
-     * \brief Write an \c std::vector to a binary stream. The function will first write a
-     * \c size_t, the size of the vector to the stream, and then the values saved in the vector.
+     * \brief Write an \c std::vector to a binary stream.
+     * \details The function will first write a \c size_t, the size of the vector to the stream, 
+     * and then the values saved in the vector.
      * \tparam T Type of the value to be written
      * \param stream The stream to which the value is written
      * \param values The vector to be written.

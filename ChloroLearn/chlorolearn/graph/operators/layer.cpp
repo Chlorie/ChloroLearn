@@ -21,14 +21,14 @@ namespace chloro::layers
     }
 
     NodeRef convolutional_2d(Graph& graph, const NodeRef input, const size_t kernel_size,
-        const size_t filter_amount, const size_t stride)
+        const size_t filter_amount, const size_t stride, Activation&& activation)
     {
-        return convolutional_2d(graph, input,
-            { kernel_size, kernel_size }, filter_amount, stride);
+        return convolutional_2d(graph, input, { kernel_size, kernel_size },
+            filter_amount, { stride, stride }, std::move(activation));
     }
 
     NodeRef convolutional_2d(Graph& graph, const NodeRef input, const ArrayShape& kernel_size,
-        const size_t filter_amount, const size_t stride)
+        const size_t filter_amount, const ArrayShape& stride, Activation&& activation)
     {
         using namespace operators;
         if (kernel_size.size() != 2) throw IllegalArgumentException("Kernels should be 2D");
@@ -36,6 +36,8 @@ namespace chloro::layers
         if (shape.size() != 3)
             throw IllegalArgumentException("Input should be 3D (2D feature maps)");
         const NodeRef kernel_node = graph.add_variable({ filter_amount, kernel_size[0], kernel_size[1], shape[2] });
-        return graph.add_operator(convolution_2d_with_padding(input, kernel_node, stride));
+        const NodeRef no_activation = graph.add_operator(convolution_2d_with_padding(input, kernel_node, stride));
+        if (activation != nullptr) return graph.add_operator(activation(no_activation));
+        return no_activation;
     }
 }

@@ -1,6 +1,9 @@
 var searchData=
 [
   ['flatten',['flatten',['../namespacechloro_1_1operators.html#ab8fa2bba3d5d70f7635a2533970a94f0',1,'chloro::operators']]],
+  ['for_5feach',['for_each',['../classchloro_1_1_operand.html#abeb636899223a9cbdb958f03e1ef0bb7',1,'chloro::Operand']]],
   ['force_5freshape',['force_reshape',['../classchloro_1_1_array.html#a5b1ed2c1cb7ac1e1a21d39991978c23a',1,'chloro::Array']]],
-  ['forwardparams',['ForwardParams',['../structchloro_1_1_forward_params.html',1,'chloro::ForwardParams'],['../structchloro_1_1_forward_params.html#a90458ed9d30593019598319f0842d35c',1,'chloro::ForwardParams::ForwardParams()']]]
+  ['forward_5fpropagate',['forward_propagate',['../classchloro_1_1_operator.html#a4adf8760e157affbfa7cbd0c89266470',1,'chloro::Operator']]],
+  ['forwardparams',['ForwardParams',['../structchloro_1_1_forward_params.html',1,'chloro']]],
+  ['from_5fnodes',['from_nodes',['../structchloro_1_1_listed_operator.html#a553fd27d349ae4b358be96ae1e375eaa',1,'chloro::ListedOperator']]]
 ];

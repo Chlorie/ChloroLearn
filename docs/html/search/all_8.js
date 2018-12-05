@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['length_5fat',['length_at',['../classchloro_1_1_array.html#a34f99010ed2295f58be876d9fe04bd50',1,'chloro::Array']]],
-  ['listedoperator',['ListedOperator',['../structchloro_1_1_listed_operator.html',1,'chloro']]],
-  ['load_5fvariables',['load_variables',['../classchloro_1_1_graph.html#acb0a816f3e5a3dedee0b48c42d4d5301',1,'chloro::Graph']]]
+  ['join',['join',['../classchloro_1_1_operand.html#a13127b75a9d1c53e14b6765932318e12',1,'chloro::Operand']]]
 ];

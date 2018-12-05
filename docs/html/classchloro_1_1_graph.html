@@ -73,7 +73,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A class representing a flow graph. All computational works are done through manipulations of a <code><a class="el" href="classchloro_1_1_graph.html" title="A class representing a flow graph. All computational works are done through manipulations of a Graph...">Graph</a></code>. All the operations in a graph is lazy-evaluated, that is, the values are calculated every time you call the <code>get_value</code> method, but not when you construct the graph.  
+<p>A class representing a flow graph.  
  <a href="classchloro_1_1_graph.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="graph_8h_source.html">graph.h</a>&gt;</code></p>
@@ -85,10 +85,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a179d2f701dc96da3a3ecc31f85557a83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty graph. <br /></td></tr>
 <tr class="separator:a179d2f701dc96da3a3ecc31f85557a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e2a3ca8eb5a7ba0d79c9780578f7762"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a2e2a3ca8eb5a7ba0d79c9780578f7762">add_input</a> (const ArrayShape &amp;shape={ 1 })</td></tr>
-<tr class="memdesc:a2e2a3ca8eb5a7ba0d79c9780578f7762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. Before evaluating and back-propagati...">Input</a></code> node of a specific shape into this graph.  <a href="#a2e2a3ca8eb5a7ba0d79c9780578f7762">More...</a><br /></td></tr>
+<tr class="memdesc:a2e2a3ca8eb5a7ba0d79c9780578f7762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a></code> node of a specific shape into this graph.  <a href="#a2e2a3ca8eb5a7ba0d79c9780578f7762">More...</a><br /></td></tr>
 <tr class="separator:a2e2a3ca8eb5a7ba0d79c9780578f7762"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4453fec914c31cd414c0943983f894df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a4453fec914c31cd414c0943983f894df">add_variable</a> (const ArrayShape &amp;shape={ 1 })</td></tr>
-<tr class="memdesc:a4453fec914c31cd414c0943983f894df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. The value of a variable can be updated during back...">Variable</a></code> node of a specific shape into this graph.  <a href="#a4453fec914c31cd414c0943983f894df">More...</a><br /></td></tr>
+<tr class="memdesc:a4453fec914c31cd414c0943983f894df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. ">Variable</a></code> node of a specific shape into this graph.  <a href="#a4453fec914c31cd414c0943983f894df">More...</a><br /></td></tr>
 <tr class="separator:a4453fec914c31cd414c0943983f894df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9900605c01e822ebc9f5e1582086c1d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a9900605c01e822ebc9f5e1582086c1d5">add_constant</a> (const <a class="el" href="classchloro_1_1_array.html">Array</a>&lt; double &gt; &amp;array)</td></tr>
 <tr class="memdesc:a9900605c01e822ebc9f5e1582086c1d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a <code><a class="el" href="classchloro_1_1_constant.html" title="This kind of node content holds a constant array value, which can be queried later in the evaluating ...">Constant</a></code> node containing a constant array into this graph.  <a href="#a9900605c01e822ebc9f5e1582086c1d5">More...</a><br /></td></tr>
@@ -97,13 +97,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abf19f2af5de4e6e814e8d8d5bb8e5e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a <code><a class="el" href="classchloro_1_1_constant.html" title="This kind of node content holds a constant array value, which can be queried later in the evaluating ...">Constant</a></code> node containing a constant array into this graph.  <a href="#abf19f2af5de4e6e814e8d8d5bb8e5e14">More...</a><br /></td></tr>
 <tr class="separator:abf19f2af5de4e6e814e8d8d5bb8e5e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e2b2b60e3474cbd7a9ac116ae92c722"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a5e2b2b60e3474cbd7a9ac116ae92c722">add_operator</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> &amp;&amp;list)</td></tr>
-<tr class="memdesc:a5e2b2b60e3474cbd7a9ac116ae92c722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> (a series of <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code>s, please see documentation for <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> for more info) into this graph.  <a href="#a5e2b2b60e3474cbd7a9ac116ae92c722">More...</a><br /></td></tr>
+<tr class="memdesc:a5e2b2b60e3474cbd7a9ac116ae92c722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> into this graph.  <a href="#a5e2b2b60e3474cbd7a9ac116ae92c722">More...</a><br /></td></tr>
 <tr class="separator:a5e2b2b60e3474cbd7a9ac116ae92c722"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a380bbf13cd35b980bae8e7a2bcccac7f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classchloro_1_1_array.html">Array</a>&lt; double &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a380bbf13cd35b980bae8e7a2bcccac7f">get_value</a> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;node, std::initializer_list&lt; <a class="el" href="structchloro_1_1_input_param.html">InputParam</a> &gt; input_params={})</td></tr>
-<tr class="memdesc:a380bbf13cd35b980bae8e7a2bcccac7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a node in the graph. Evaluates the <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code> nodes in evaluation mode, that is not updating state variables and not performing computations like dropouts. For more information, see <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code>.  <a href="#a380bbf13cd35b980bae8e7a2bcccac7f">More...</a><br /></td></tr>
+<tr class="memdesc:a380bbf13cd35b980bae8e7a2bcccac7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a node in the graph.  <a href="#a380bbf13cd35b980bae8e7a2bcccac7f">More...</a><br /></td></tr>
 <tr class="separator:a380bbf13cd35b980bae8e7a2bcccac7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e3171aa1c61c0cb869607cb354b7960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a8e3171aa1c61c0cb869607cb354b7960">set_variable</a> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;node, const <a class="el" href="classchloro_1_1_array.html">Array</a>&lt; double &gt; &amp;value) const</td></tr>
-<tr class="memdesc:a8e3171aa1c61c0cb869607cb354b7960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly set the value of a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. The value of a variable can be updated during back...">Variable</a></code> node. Can be used in order to customize graph saving and loading.  <a href="#a8e3171aa1c61c0cb869607cb354b7960">More...</a><br /></td></tr>
+<tr class="memdesc:a8e3171aa1c61c0cb869607cb354b7960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly set the value of a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. ">Variable</a></code> node. Can be used in order to customize graph saving and loading.  <a href="#a8e3171aa1c61c0cb869607cb354b7960">More...</a><br /></td></tr>
 <tr class="separator:a8e3171aa1c61c0cb869607cb354b7960"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8736a7530ff743487826d9ff9da86d3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a8736a7530ff743487826d9ff9da86d3a">optimize_once</a> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;target, std::initializer_list&lt; <a class="el" href="structchloro_1_1_input_param.html">InputParam</a> &gt; input_params={}, double learning_rate=1e-3)</td></tr>
 <tr class="memdesc:a8736a7530ff743487826d9ff9da86d3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimize the target once using gradient descent method.  <a href="#a8736a7530ff743487826d9ff9da86d3a">More...</a><br /></td></tr>
@@ -119,7 +119,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acb0a816f3e5a3dedee0b48c42d4d5301"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A class representing a flow graph. All computational works are done through manipulations of a <code><a class="el" href="classchloro_1_1_graph.html" title="A class representing a flow graph. All computational works are done through manipulations of a Graph...">Graph</a></code>. All the operations in a graph is lazy-evaluated, that is, the values are calculated every time you call the <code>get_value</code> method, but not when you construct the graph. </p>
+<div class="textblock"><p>A class representing a flow graph. </p>
+<p>All computational works are done through manipulations of a <code><a class="el" href="classchloro_1_1_graph.html" title="A class representing a flow graph. ">Graph</a></code>. All the operations in a graph is lazy-evaluated, that is, the values are calculated every time you call the <code>get_value</code> method, but not when you construct the graph. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a9900605c01e822ebc9f5e1582086c1d5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9900605c01e822ebc9f5e1582086c1d5">&#9670;&nbsp;</a></span>add_constant() <span class="overload">[1/2]</span></h2>
@@ -191,7 +192,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Add an <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. Before evaluating and back-propagati...">Input</a></code> node of a specific shape into this graph. </p>
+<p>Add an <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a></code> node of a specific shape into this graph. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">shape</td><td>The shape of the added node. Defaults to { 1 } (scalar input). </td></tr>
@@ -218,7 +219,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Add an <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> (a series of <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code>s, please see documentation for <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> for more info) into this graph. </p>
+<p>Add an <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> into this graph. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>The temporary <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> to add into the graph. </td></tr>
@@ -226,6 +227,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the added node. </dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>An <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> is a series of <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code>s, please see documentation for <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> for more info. </dd></dl>
 
 </div>
 </div>
@@ -245,8 +247,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Add a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. The value of a variable can be updated during back...">Variable</a></code> node of a specific shape into this graph. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Add a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. ">Variable</a></code> node of a specific shape into this graph. </p>
+<p>The variable will be initialized randomly using <code><a class="el" href="classchloro_1_1_array.html#ace2308d27489424ce9445213b7c1ec06" title="Constructs an array filled with random numbers (normally distributed with mean of 0 and standard devi...">Array&lt;double&gt;::random</a></code>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">shape</td><td>The shape of the added node. Defaults to { 1 } (scalar input). </td></tr>
   </table>
@@ -282,11 +284,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Evaluates a node in the graph. Evaluates the <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code> nodes in evaluation mode, that is not updating state variables and not performing computations like dropouts. For more information, see <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Evaluates a node in the graph. </p>
+<p>This method evaluates the <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code> nodes in evaluation mode, that is not updating state variables and not performing computations like dropouts. For more information on evaluation modes, see document for <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">node</td><td>The node to evaluate. </td></tr>
-    <tr><td class="paramname">input_params</td><td>An <code>std::initializer_list</code> of <code><a class="el" href="structchloro_1_1_input_param.html" title="An aggregate struct for providing an input array for an Input node. ">InputParam</a></code>s for <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. Before evaluating and back-propagati...">Input</a></code> nodes. Defaults to an empty list. </td></tr>
+    <tr><td class="paramname">input_params</td><td>An <code>std::initializer_list</code> of <code><a class="el" href="structchloro_1_1_input_param.html" title="An aggregate struct for providing an input array for an Input node. ">InputParam</a></code>s for <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a></code> nodes. Defaults to an empty list. </td></tr>
   </table>
   </dd>
 </dl>
@@ -362,8 +364,8 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">batch_size</td><td>How many times to perform the SGD method. </td></tr>
-    <tr><td class="paramname">target</td><td>The target <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code> node to minimize. </td></tr>
-    <tr><td class="paramname">input_pack</td><td>An <code>std::initializer_list</code> of <code><a class="el" href="structchloro_1_1_input_pack.html" title="An aggregate struct for providing a series of inputs for an Input node at once. ">InputPack</a></code>s for <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. Before evaluating and back-propagati...">Input</a></code> nodes. </td></tr>
+    <tr><td class="paramname">target</td><td>The target <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code> node to minimize. </td></tr>
+    <tr><td class="paramname">input_pack</td><td>An <code>std::initializer_list</code> of <code><a class="el" href="structchloro_1_1_input_pack.html" title="An aggregate struct for providing a series of inputs for an Input node at once. ">InputPack</a></code>s for <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a></code> nodes. </td></tr>
     <tr><td class="paramname">learning_rate</td><td>Learning rate (step size relative to the gradient). Defaults to 1e-3. </td></tr>
   </table>
   </dd>
@@ -406,8 +408,8 @@ Public Member Functions</h2></td></tr>
 <p>Optimize the target once using gradient descent method. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">target</td><td>The target <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code> node to minimize. </td></tr>
-    <tr><td class="paramname">input_params</td><td>An <code>std::initializer_list</code> of <code><a class="el" href="structchloro_1_1_input_param.html" title="An aggregate struct for providing an input array for an Input node. ">InputParam</a></code>s for <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. Before evaluating and back-propagati...">Input</a></code> nodes. </td></tr>
+    <tr><td class="paramname">target</td><td>The target <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code> node to minimize. </td></tr>
+    <tr><td class="paramname">input_params</td><td>An <code>std::initializer_list</code> of <code><a class="el" href="structchloro_1_1_input_param.html" title="An aggregate struct for providing an input array for an Input node. ">InputParam</a></code>s for <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a></code> nodes. </td></tr>
     <tr><td class="paramname">learning_rate</td><td>Learning rate (step size relative to the gradient). Defaults to 1e-3. </td></tr>
   </table>
   </dd>
@@ -467,10 +469,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Explicitly set the value of a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. The value of a variable can be updated during back...">Variable</a></code> node. Can be used in order to customize graph saving and loading. </p>
+<p>Explicitly set the value of a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. ">Variable</a></code> node. Can be used in order to customize graph saving and loading. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td>The <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. The value of a variable can be updated during back...">Variable</a></code> node to set. </td></tr>
+    <tr><td class="paramname">node</td><td>The <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. ">Variable</a></code> node to set. </td></tr>
     <tr><td class="paramname">value</td><td>The value to set the node to. </td></tr>
   </table>
   </dd>

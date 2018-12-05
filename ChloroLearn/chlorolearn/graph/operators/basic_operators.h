@@ -13,9 +13,9 @@ namespace chloro
 
     /**
      * \brief This namespace contains most functions that work like operators, that is,
-     * taking some operands as input and returning an operand as a result. For more
-     * information on the actual \c Operand class, please refer to the corresponding
-     * header and documentation.
+     * taking some operands as input and returning an operand as a result.
+     * \remark For more information on the actual \c Operand class, please refer to the
+     * corresponding header and documentation.
      */
     namespace operators
     {
@@ -38,9 +38,9 @@ namespace chloro
         Operand subtract(Operand left, Operand right);
         /**
          * \brief Multiply operator. Also in the form of \c operator*.
-         * \return The result operand the evaluates to \a left*right. Notice that the 
-         * multiplication is element-wise. For matrix multiplication, use the function
-         * \c matrix_multiply.
+         * \return The result operand the evaluates to \a left*right. 
+         * \remark Notice that the multiplication is element-wise. For matrix multiplication, 
+         * use the function \c matrix_multiply.
          */
         Operand multiply(Operand left, Operand right);
         /**
@@ -56,7 +56,8 @@ namespace chloro
          */
         Operand matrix_multiply(Operand left, Operand right);
         /**
-         * \brief Dot product of two vectors. The operands doesn't need to be real "vectors".
+         * \brief Dot product of two vectors.
+         * \remark The operands doesn't need to be real "vectors".
          * This operator is a short-hard for multiplying \a left and \a right and doing a
          * \c sum operation on the result.
          * \return The rersult evaluates to the dot product of the two arrays.
@@ -67,7 +68,7 @@ namespace chloro
          * \brief Outputs an array with the given shape filled with a specific scalar value.
          * \param scalar A scalar valued array (shape of 1) that needs to be repeated.
          * \param shape The shape of the result operand.
-         * \return The result evaluates to the same result as \c Array<double>::repeat(scalar[0],
+         * \return The result evaluates to the same result as <tt>Array<double>::repeat</tt>(\a scalar[0],
          * \a shape).
          */
         Operand repeat(Operand scalar, const ArrayShape& shape);

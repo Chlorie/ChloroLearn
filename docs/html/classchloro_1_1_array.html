@@ -75,7 +75,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A flexible multi-dimensional generic array that supports basic operations and other functions like reshaping. Specifically, this type is broadly used in the other parts of this library, more specifically, <code><a class="el" href="classchloro_1_1_array.html">Array&lt;double&gt;</a></code>.  
+<p>A flexible multi-dimensional generic array that supports basic operations and other functions like reshaping.  
  <a href="classchloro_1_1_array.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="array_8h_source.html">array.h</a>&gt;</code></p>
@@ -168,13 +168,11 @@ T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#a431bf9d952e79c4e955a7047ea600370">operator()</a> (const std::initializer_list&lt; size_t &gt; &amp;list) const</td></tr>
 <tr class="memdesc:a431bf9d952e79c4e955a7047ea600370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a const reference to the value at the given index. <br /></td></tr>
 <tr class="separator:a431bf9d952e79c4e955a7047ea600370"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacf755ea7292ddacad8b16eb4fbd9ac5"><td class="memItemLeft" align="right" valign="top"><a id="aacf755ea7292ddacad8b16eb4fbd9ac5"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#aacf755ea7292ddacad8b16eb4fbd9ac5">operator[]</a> (const size_t index)</td></tr>
-<tr class="memdesc:aacf755ea7292ddacad8b16eb4fbd9ac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a reference to the value at the given index using single indexing. Notice that this method does not check the validity of the input. <br /></td></tr>
+<tr class="memitem:aacf755ea7292ddacad8b16eb4fbd9ac5"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#aacf755ea7292ddacad8b16eb4fbd9ac5">operator[]</a> (const size_t index)</td></tr>
+<tr class="memdesc:aacf755ea7292ddacad8b16eb4fbd9ac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a reference to the value at the given index using single indexing.  <a href="#aacf755ea7292ddacad8b16eb4fbd9ac5">More...</a><br /></td></tr>
 <tr class="separator:aacf755ea7292ddacad8b16eb4fbd9ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adca5ad5c9a8408f7699018c87d42db43"><td class="memItemLeft" align="right" valign="top"><a id="adca5ad5c9a8408f7699018c87d42db43"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#adca5ad5c9a8408f7699018c87d42db43">operator[]</a> (const size_t index) const</td></tr>
-<tr class="memdesc:adca5ad5c9a8408f7699018c87d42db43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a const reference to the value at the given index using single indexing. Notice that this method does not check the validity of the input. <br /></td></tr>
+<tr class="memitem:adca5ad5c9a8408f7699018c87d42db43"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#adca5ad5c9a8408f7699018c87d42db43">operator[]</a> (const size_t index) const</td></tr>
+<tr class="memdesc:adca5ad5c9a8408f7699018c87d42db43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a const reference to the value at the given index using single indexing.  <a href="#adca5ad5c9a8408f7699018c87d42db43">More...</a><br /></td></tr>
 <tr class="separator:adca5ad5c9a8408f7699018c87d42db43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4d864b171a83c23fabf235589cbea65"><td class="memItemLeft" align="right" valign="top"><a id="ae4d864b171a83c23fabf235589cbea65"></a>
 <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#ae4d864b171a83c23fabf235589cbea65">operator+=</a> (T other)</td></tr>
@@ -260,8 +258,14 @@ Friends</h2></td></tr>
 <tr class="memitem:ae5050cd67e450419cf638e2a09bf11c9"><td class="memItemLeft" align="right" valign="top"><a id="ae5050cd67e450419cf638e2a09bf11c9"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>Array</b></td></tr>
 <tr class="separator:ae5050cd67e450419cf638e2a09bf11c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8086eb08d33734bdf9bc540f84bce248"><td class="memItemLeft" align="right" valign="top"><a id="a8086eb08d33734bdf9bc540f84bce248"></a>
+std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#a8086eb08d33734bdf9bc540f84bce248">operator&lt;&lt;</a> (std::ostream &amp;stream, const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array)</td></tr>
+<tr class="memdesc:a8086eb08d33734bdf9bc540f84bce248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output an array into an <code>std::ostream</code>. <br /></td></tr>
+<tr class="separator:a8086eb08d33734bdf9bc540f84bce248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:ac0babd4ef7a93d7df4d91d0b93679cff"><td class="memItemLeft" align="right" valign="top"><a id="ac0babd4ef7a93d7df4d91d0b93679cff"></a>
-<a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (T value, const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array)</td></tr>
+<a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#ac0babd4ef7a93d7df4d91d0b93679cff">operator+</a> (T value, const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array)</td></tr>
+<tr class="memdesc:ac0babd4ef7a93d7df4d91d0b93679cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs an element-wise add operation. <br /></td></tr>
 <tr class="separator:ac0babd4ef7a93d7df4d91d0b93679cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8986c5db7193afcba1ad848f5c2b9cc"><td class="memItemLeft" align="right" valign="top"><a id="ac8986c5db7193afcba1ad848f5c2b9cc"></a>
 <a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array, T value)</td></tr>
@@ -284,8 +288,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Array</b></td></tr>
 <tr class="memitem:a3f7c7b4264550959b09b98d95885ba9c"><td class="memItemLeft" align="right" valign="top"><a id="a3f7c7b4264550959b09b98d95885ba9c"></a>
 <a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classchloro_1_1_array.html">Array</a> &amp;&amp;left, <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;&amp;right)</td></tr>
 <tr class="separator:a3f7c7b4264550959b09b98d95885ba9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a2c652228d0db975d18eab28202021c22"><td class="memItemLeft" align="right" valign="top"><a id="a2c652228d0db975d18eab28202021c22"></a>
-<a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (T value, const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array)</td></tr>
+<a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#a2c652228d0db975d18eab28202021c22">operator-</a> (T value, const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array)</td></tr>
+<tr class="memdesc:a2c652228d0db975d18eab28202021c22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs an element-wise subtract operation. <br /></td></tr>
 <tr class="separator:a2c652228d0db975d18eab28202021c22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17b1018a7b3de838c7cbb3a8c7a92eb9"><td class="memItemLeft" align="right" valign="top"><a id="a17b1018a7b3de838c7cbb3a8c7a92eb9"></a>
 <a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array, T value)</td></tr>
@@ -308,8 +314,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Array</b></td></tr>
 <tr class="memitem:add13e34336c5036a08efa90621d1fb28"><td class="memItemLeft" align="right" valign="top"><a id="add13e34336c5036a08efa90621d1fb28"></a>
 <a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classchloro_1_1_array.html">Array</a> &amp;&amp;left, <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;&amp;right)</td></tr>
 <tr class="separator:add13e34336c5036a08efa90621d1fb28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a108a22c51211eeef0e9510a32ed78e8e"><td class="memItemLeft" align="right" valign="top"><a id="a108a22c51211eeef0e9510a32ed78e8e"></a>
-<a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (T value, const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array)</td></tr>
+<a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#a108a22c51211eeef0e9510a32ed78e8e">operator*</a> (T value, const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array)</td></tr>
+<tr class="memdesc:a108a22c51211eeef0e9510a32ed78e8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs an element-wise multiply operation. <br /></td></tr>
 <tr class="separator:a108a22c51211eeef0e9510a32ed78e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a394951e4e9b172c18797a23126ec3b72"><td class="memItemLeft" align="right" valign="top"><a id="a394951e4e9b172c18797a23126ec3b72"></a>
 <a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array, T value)</td></tr>
@@ -332,8 +340,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Array</b></td></tr>
 <tr class="memitem:a9f6e8a4f1e606f16e254606867dc59b8"><td class="memItemLeft" align="right" valign="top"><a id="a9f6e8a4f1e606f16e254606867dc59b8"></a>
 <a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="classchloro_1_1_array.html">Array</a> &amp;&amp;left, <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;&amp;right)</td></tr>
 <tr class="separator:a9f6e8a4f1e606f16e254606867dc59b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a4480c9ecd217410964b5abbdde6355eb"><td class="memItemLeft" align="right" valign="top"><a id="a4480c9ecd217410964b5abbdde6355eb"></a>
-<a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (T value, const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array)</td></tr>
+<a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_array.html#a4480c9ecd217410964b5abbdde6355eb">operator/</a> (T value, const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array)</td></tr>
+<tr class="memdesc:a4480c9ecd217410964b5abbdde6355eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs an element-wise divide operation. <br /></td></tr>
 <tr class="separator:a4480c9ecd217410964b5abbdde6355eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4e2b85033541560cd615e66d142014a"><td class="memItemLeft" align="right" valign="top"><a id="ac4e2b85033541560cd615e66d142014a"></a>
 <a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array, T value)</td></tr>
@@ -356,16 +366,13 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Array</b></td></tr>
 <tr class="memitem:a99bd4403eb0d5101f09d0f442e899cbb"><td class="memItemLeft" align="right" valign="top"><a id="a99bd4403eb0d5101f09d0f442e899cbb"></a>
 <a class="el" href="classchloro_1_1_array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (<a class="el" href="classchloro_1_1_array.html">Array</a> &amp;&amp;left, <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;&amp;right)</td></tr>
 <tr class="separator:a99bd4403eb0d5101f09d0f442e899cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8086eb08d33734bdf9bc540f84bce248"><td class="memItemLeft" align="right" valign="top"><a id="a8086eb08d33734bdf9bc540f84bce248"></a>
-std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;stream, const <a class="el" href="classchloro_1_1_array.html">Array</a> &amp;array)</td></tr>
-<tr class="separator:a8086eb08d33734bdf9bc540f84bce248"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T, typename = std::enable_if_t&lt;std::is_arithmetic_v&lt;T&gt;&gt;&gt;<br />
 class chloro::Array&lt; T, typename &gt;</h3>
 
-<p>A flexible multi-dimensional generic array that supports basic operations and other functions like reshaping. Specifically, this type is broadly used in the other parts of this library, more specifically, <code><a class="el" href="classchloro_1_1_array.html">Array&lt;double&gt;</a></code>. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
+<p>A flexible multi-dimensional generic array that supports basic operations and other functions like reshaping. </p>
+<p>Specifically, this type is broadly used in the other parts of this library, more specifically, <code>double</code> version of this type. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>Type of data stored in the <code><a class="el" href="classchloro_1_1_array.html" title="A flexible multi-dimensional generic array that supports basic operations and other functions like re...">Array</a></code>, should be an arithmatic type. </td></tr>
   </table>
@@ -497,6 +504,68 @@ template&lt;typename Func &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result array, which is just <code>*this</code>. </dd></dl>
+
+</div>
+</div>
+<a id="aacf755ea7292ddacad8b16eb4fbd9ac5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacf755ea7292ddacad8b16eb4fbd9ac5">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename  = std::enable_if_t&lt;std::is_arithmetic_v&lt;T&gt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T&amp; <a class="el" href="classchloro_1_1_array.html">chloro::Array</a>&lt; T, typename &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a reference to the value at the given index using single indexing. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>Notice that this method does not check the validity of the input. </dd></dl>
+
+</div>
+</div>
+<a id="adca5ad5c9a8408f7699018c87d42db43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adca5ad5c9a8408f7699018c87d42db43">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename  = std::enable_if_t&lt;std::is_arithmetic_v&lt;T&gt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const T&amp; <a class="el" href="classchloro_1_1_array.html">chloro::Array</a>&lt; T, typename &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a const reference to the value at the given index using single indexing. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>Notice that this method does not check the validity of the input. </dd></dl>
 
 </div>
 </div>

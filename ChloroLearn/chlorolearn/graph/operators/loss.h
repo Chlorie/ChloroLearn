@@ -5,8 +5,8 @@
 namespace chloro::operators
 {
     /**
-     * \brief Categorical cross entropy loss function. Usually used as the loss function for
-     * classification tasks.
+     * \brief Categorical cross entropy loss function.
+     * \details Usually used as the loss function for classification tasks.
      * \param predicted The predicted value for the target one-hot vector. All components of
      * \a predicted should be positive, and sum up to 1. Usually \a predicted vector is an output
      * of \c softmax operation.

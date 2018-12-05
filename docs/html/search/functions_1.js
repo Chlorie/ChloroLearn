@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['backwardparams',['BackwardParams',['../structchloro_1_1_backward_params.html#abce1ab2752402ba90d583f1bfb768934',1,'chloro::BackwardParams']]]
+  ['back_5fpropogate',['back_propogate',['../classchloro_1_1_operator.html#aab0671c0523825acff4c0e99b605fb62',1,'chloro::Operator']]]
 ];

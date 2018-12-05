@@ -12,10 +12,10 @@
 namespace chloro
 {
     /**
-     * \brief A class representing a flow graph. All computational works are done
-     * through manipulations of a \c Graph. All the operations in a graph is lazy-evaluated,
-     * that is, the values are calculated every time you call the \c get_value method,
-     * but not when you construct the graph.
+     * \brief A class representing a flow graph.
+     * \details All computational works are done through manipulations of a \c Graph. 
+     * All the operations in a graph is lazy-evaluated, that is, the values are calculated 
+     * every time you call the \c get_value method, but not when you construct the graph.
      */
     class Graph final
     {
@@ -34,7 +34,8 @@ namespace chloro
          */
         Node& add_input(const ArrayShape& shape = { 1 });
         /**
-         * \brief Add a \c Variable node of a specific shape into this graph.
+         * \brief Add a \c Variable node of a specific shape into this graph. 
+         * \details The variable will be initialized randomly using \c Array<double>::random.
          * \param shape The shape of the added node. Defaults to { 1 } (scalar input).
          * \return A reference to the added node.
          */
@@ -52,16 +53,18 @@ namespace chloro
          */
         Node& add_constant(Array<double>&& array);
         /**
-         * \brief Add an \c Operand (a series of <tt>Operator</tt>s, please see documentation for \c Operand for
-         * more info) into this graph.
+         * \brief Add an \c Operand into this graph.
          * \param list The temporary \c Operand to add into the graph.
          * \return A reference to the added node.
+         * \remark An \c Operand is a series of <tt>Operator</tt>s, please see documentation for \c Operand for
+         * more info.
          */
         Node& add_operator(Operand&& list);
         /**
-         * \brief Evaluates a node in the graph. Evaluates the \c Operator nodes in evaluation mode, that is
-         * not updating state variables and not performing computations like dropouts. For more information, see
-         * \c Operator.
+         * \brief Evaluates a node in the graph.
+         * \details This method evaluates the \c Operator nodes in evaluation mode, that is not updating state 
+         * variables and not performing computations like dropouts. For more information on evaluation modes, see
+         * document for \c Operator.
          * \param node The node to evaluate.
          * \param input_params An \c std::initializer_list of <tt>InputParam</tt>s for \c Input nodes.
          * Defaults to an empty list.

@@ -74,7 +74,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A class representing a node in the DAG flow graph. Users should <b>not</b> construct objects of this type manually, <b>neither</b> should users manually construct any of the four node content types to be mentioned below. Use the <em>add_</em>... methods of class <code><a class="el" href="classchloro_1_1_graph.html" title="A class representing a flow graph. All computational works are done through manipulations of a Graph...">Graph</a></code> instead. Nodes can contain contents of types including <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. Before evaluating and back-propagati...">Input</a></code>, <code><a class="el" href="classchloro_1_1_constant.html" title="This kind of node content holds a constant array value, which can be queried later in the evaluating ...">Constant</a></code>, <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. The value of a variable can be updated during back...">Variable</a></code> and <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code>. For more information on these four node types, please see their own documentation and implementation respectively.  
+<p>A class representing a node in the DAG flow graph.  
  <a href="classchloro_1_1_node.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="node_8h_source.html">node.h</a>&gt;</code></p>
@@ -82,7 +82,8 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1672ab309534afe29f371cfa84b337cf"><td class="memItemLeft" align="right" valign="top"><a id="a1672ab309534afe29f371cfa84b337cf"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;&amp;)=default</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_node.html#a1672ab309534afe29f371cfa84b337cf">Node</a> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;&amp;)=default</td></tr>
+<tr class="memdesc:a1672ab309534afe29f371cfa84b337cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor. <br /></td></tr>
 <tr class="separator:a1672ab309534afe29f371cfa84b337cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3201ef905e8257fe6d56512812aa99f"><td class="memItemLeft" align="right" valign="top"><a id="ab3201ef905e8257fe6d56512812aa99f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="classchloro_1_1_input.html">Input</a> &amp;content)=delete</td></tr>
@@ -97,19 +98,24 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="classchloro_1_1_operator.html">Operator</a> &amp;content, const std::vector&lt; NodeRef &gt; &amp;)=delete</td></tr>
 <tr class="separator:ab66ccb86cc49dbbe6c448087a57575aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd10810d0925208acb0dbbab3cc323e8"><td class="memItemLeft" align="right" valign="top"><a id="afd10810d0925208acb0dbbab3cc323e8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="classchloro_1_1_input.html">Input</a> &amp;&amp;content)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_node.html#afd10810d0925208acb0dbbab3cc323e8">Node</a> (<a class="el" href="classchloro_1_1_input.html">Input</a> &amp;&amp;content)</td></tr>
+<tr class="memdesc:afd10810d0925208acb0dbbab3cc323e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move construct a node of content type <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a></code>. <br /></td></tr>
 <tr class="separator:afd10810d0925208acb0dbbab3cc323e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae61054ed5ded69d84d2da3f1602dd0c3"><td class="memItemLeft" align="right" valign="top"><a id="ae61054ed5ded69d84d2da3f1602dd0c3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="classchloro_1_1_constant.html">Constant</a> &amp;&amp;content)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_node.html#ae61054ed5ded69d84d2da3f1602dd0c3">Node</a> (<a class="el" href="classchloro_1_1_constant.html">Constant</a> &amp;&amp;content)</td></tr>
+<tr class="memdesc:ae61054ed5ded69d84d2da3f1602dd0c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move construct a node of content type <code><a class="el" href="classchloro_1_1_constant.html" title="This kind of node content holds a constant array value, which can be queried later in the evaluating ...">Constant</a></code>. <br /></td></tr>
 <tr class="separator:ae61054ed5ded69d84d2da3f1602dd0c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03c7d6aa12739d46af1cc932fade3ac0"><td class="memItemLeft" align="right" valign="top"><a id="a03c7d6aa12739d46af1cc932fade3ac0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="classchloro_1_1_variable.html">Variable</a> &amp;&amp;content)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_node.html#a03c7d6aa12739d46af1cc932fade3ac0">Node</a> (<a class="el" href="classchloro_1_1_variable.html">Variable</a> &amp;&amp;content)</td></tr>
+<tr class="memdesc:a03c7d6aa12739d46af1cc932fade3ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move construct a node of content type <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. ">Variable</a></code>. <br /></td></tr>
 <tr class="separator:a03c7d6aa12739d46af1cc932fade3ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60081c34eb6976f454b267bcd5a56b26"><td class="memItemLeft" align="right" valign="top"><a id="a60081c34eb6976f454b267bcd5a56b26"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="classchloro_1_1_operator.html">Operator</a> &amp;&amp;content, const std::vector&lt; NodeRef &gt; &amp;from_nodes)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_node.html#a60081c34eb6976f454b267bcd5a56b26">Node</a> (<a class="el" href="classchloro_1_1_operator.html">Operator</a> &amp;&amp;content, const std::vector&lt; NodeRef &gt; &amp;from_nodes)</td></tr>
+<tr class="memdesc:a60081c34eb6976f454b267bcd5a56b26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move construct a node of content type <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code>, and link up the nodes. <br /></td></tr>
 <tr class="separator:a60081c34eb6976f454b267bcd5a56b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a2a93eaaae599b3aa1fffd625481655"><td class="memItemLeft" align="right" valign="top"><a id="a2a2a93eaaae599b3aa1fffd625481655"></a>
-const ArrayShape &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>shape</b> ()</td></tr>
+const ArrayShape &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_node.html#a2a2a93eaaae599b3aa1fffd625481655">shape</a> ()</td></tr>
+<tr class="memdesc:a2a2a93eaaae599b3aa1fffd625481655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the shape of the node content. <br /></td></tr>
 <tr class="separator:a2a2a93eaaae599b3aa1fffd625481655"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
@@ -119,7 +125,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Graph</b></td></tr>
 <tr class="separator:afab89afd724f1b07b1aaad6bdc61c47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A class representing a node in the DAG flow graph. Users should <b>not</b> construct objects of this type manually, <b>neither</b> should users manually construct any of the four node content types to be mentioned below. Use the <em>add_</em>... methods of class <code><a class="el" href="classchloro_1_1_graph.html" title="A class representing a flow graph. All computational works are done through manipulations of a Graph...">Graph</a></code> instead. Nodes can contain contents of types including <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. Before evaluating and back-propagati...">Input</a></code>, <code><a class="el" href="classchloro_1_1_constant.html" title="This kind of node content holds a constant array value, which can be queried later in the evaluating ...">Constant</a></code>, <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. The value of a variable can be updated during back...">Variable</a></code> and <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code>. For more information on these four node types, please see their own documentation and implementation respectively. </p>
+<div class="textblock"><p>A class representing a node in the DAG flow graph. </p>
+<p>Users should <b>not</b> construct objects of this type manually, <b>neither</b> should users manually construct any of the four node content types to be mentioned below. Use the <em>add_</em>... methods of class <code><a class="el" href="classchloro_1_1_graph.html" title="A class representing a flow graph. ">Graph</a></code> instead. Nodes can contain contents of types including <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a></code>, <code><a class="el" href="classchloro_1_1_constant.html" title="This kind of node content holds a constant array value, which can be queried later in the evaluating ...">Constant</a></code>, <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. ">Variable</a></code> and <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code>. For more information on these four node types, please refer to their own documentation and implementation respectively. </p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>chlorolearn/graph/<a class="el" href="node_8h_source.html">node.h</a></li>
 <li>chlorolearn/graph/node.cpp</li>

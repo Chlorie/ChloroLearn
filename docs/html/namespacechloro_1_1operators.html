@@ -72,7 +72,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>This namespace contains most functions that work like operators, that is, taking some operands as input and returning an operand as a result. For more information on the actual <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> class, please refer to the corresponding header and documentation.  
+<p>This namespace contains most functions that work like operators, that is, taking some operands as input and returning an operand as a result.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -105,7 +105,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a3e40766807468a51fe23d3bef70d84c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix multiplication operator.  <a href="#a3e40766807468a51fe23d3bef70d84c9">More...</a><br /></td></tr>
 <tr class="separator:a3e40766807468a51fe23d3bef70d84c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ed8cb28ae1f14c6479c2e4eda6e74cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#a8ed8cb28ae1f14c6479c2e4eda6e74cc">dot</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> left, <a class="el" href="classchloro_1_1_operand.html">Operand</a> right)</td></tr>
-<tr class="memdesc:a8ed8cb28ae1f14c6479c2e4eda6e74cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dot product of two vectors. The operands doesn't need to be real "vectors". This operator is a short-hard for multiplying <em>left</em> and <em>right</em> and doing a <code>sum</code> operation on the result.  <a href="#a8ed8cb28ae1f14c6479c2e4eda6e74cc">More...</a><br /></td></tr>
+<tr class="memdesc:a8ed8cb28ae1f14c6479c2e4eda6e74cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dot product of two vectors.  <a href="#a8ed8cb28ae1f14c6479c2e4eda6e74cc">More...</a><br /></td></tr>
 <tr class="separator:a8ed8cb28ae1f14c6479c2e4eda6e74cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9915ed7ed92a6a5268b6d2e72aa48197"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#a9915ed7ed92a6a5268b6d2e72aa48197">repeat</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> scalar, const ArrayShape &amp;shape)</td></tr>
 <tr class="memdesc:a9915ed7ed92a6a5268b6d2e72aa48197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs an array with the given shape filled with a specific scalar value.  <a href="#a9915ed7ed92a6a5268b6d2e72aa48197">More...</a><br /></td></tr>
@@ -123,21 +123,25 @@ Functions</h2></td></tr>
 <tr class="memdesc:a31ee31070dd1930e7ee50d1f93711a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise the <em>base</em> to the power <em>exponent</em>, with a constant <em>base</em> specified. The <em>base</em> constant defaults to the natural base e.  <a href="#a31ee31070dd1930e7ee50d1f93711a19">More...</a><br /></td></tr>
 <tr class="separator:a31ee31070dd1930e7ee50d1f93711a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aced6ce335c866ddd7985e2d42e8695f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#aced6ce335c866ddd7985e2d42e8695f7">categorical_cross_entropy</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> predicted, <a class="el" href="classchloro_1_1_operand.html">Operand</a> target)</td></tr>
-<tr class="memdesc:aced6ce335c866ddd7985e2d42e8695f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categorical cross entropy loss function. Usually used as the loss function for classification tasks.  <a href="#aced6ce335c866ddd7985e2d42e8695f7">More...</a><br /></td></tr>
+<tr class="memdesc:aced6ce335c866ddd7985e2d42e8695f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categorical cross entropy loss function.  <a href="#aced6ce335c866ddd7985e2d42e8695f7">More...</a><br /></td></tr>
 <tr class="separator:aced6ce335c866ddd7985e2d42e8695f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8fa2bba3d5d70f7635a2533970a94f0"><td class="memItemLeft" align="right" valign="top"><a id="ab8fa2bba3d5d70f7635a2533970a94f0"></a>
 <a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#ab8fa2bba3d5d70f7635a2533970a94f0">flatten</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> input)</td></tr>
 <tr class="memdesc:ab8fa2bba3d5d70f7635a2533970a94f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reshape an operand into a column vector (shape N x 1). <br /></td></tr>
 <tr class="separator:ab8fa2bba3d5d70f7635a2533970a94f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ef5897e67f83eab81a8070abc7f515d"><td class="memItemLeft" align="right" valign="top"><a id="a3ef5897e67f83eab81a8070abc7f515d"></a>
-<a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><b>convolution_2d_with_padding</b> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> input, <a class="el" href="classchloro_1_1_operand.html">Operand</a> filters, const size_t stride)</td></tr>
-<tr class="separator:a3ef5897e67f83eab81a8070abc7f515d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3103b5e8761a1ea65a87a4ca88a103c5"><td class="memItemLeft" align="right" valign="top"><a id="a3103b5e8761a1ea65a87a4ca88a103c5"></a>
-<a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><b>max_pool_2d</b> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> input, const size_t stride)</td></tr>
-<tr class="separator:a3103b5e8761a1ea65a87a4ca88a103c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a122f5d542b05e090a86a8df8f427f511"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#a122f5d542b05e090a86a8df8f427f511">convolution_2d_with_padding</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> input, <a class="el" href="classchloro_1_1_operand.html">Operand</a> filters, const ArrayShape &amp;stride={ 1, 1 })</td></tr>
+<tr class="memdesc:a122f5d542b05e090a86a8df8f427f511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a 2D convolution operation with padding on the bottom-right side.  <a href="#a122f5d542b05e090a86a8df8f427f511">More...</a><br /></td></tr>
+<tr class="separator:a122f5d542b05e090a86a8df8f427f511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5242fdda46069019119a5e445e4192ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#a5242fdda46069019119a5e445e4192ea">max_pool_2d</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> input, size_t pool_size)</td></tr>
+<tr class="memdesc:a5242fdda46069019119a5e445e4192ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a max pooling operation.  <a href="#a5242fdda46069019119a5e445e4192ea">More...</a><br /></td></tr>
+<tr class="separator:a5242fdda46069019119a5e445e4192ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbca9db3357d275fcc79dc8062ecdae6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#adbca9db3357d275fcc79dc8062ecdae6">max_pool_2d</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> input, const ArrayShape &amp;pool_size, const ArrayShape &amp;pool_stride)</td></tr>
+<tr class="memdesc:adbca9db3357d275fcc79dc8062ecdae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a max pooling operation.  <a href="#adbca9db3357d275fcc79dc8062ecdae6">More...</a><br /></td></tr>
+<tr class="separator:adbca9db3357d275fcc79dc8062ecdae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This namespace contains most functions that work like operators, that is, taking some operands as input and returning an operand as a result. For more information on the actual <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> class, please refer to the corresponding header and documentation. </p>
+<div class="textblock"><p>This namespace contains most functions that work like operators, that is, taking some operands as input and returning an operand as a result. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>For more information on the actual <code><a class="el" href="classchloro_1_1_operand.html" title="This class serves as a syntax tree for inserting multiple Operator objects together into the same gra...">Operand</a></code> class, please refer to the corresponding header and documentation. </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="acd12218ea3d288abd3f19222b07ac164"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd12218ea3d288abd3f19222b07ac164">&#9670;&nbsp;</a></span>add()</h2>
@@ -196,8 +200,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Categorical cross entropy loss function. Usually used as the loss function for classification tasks. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Categorical cross entropy loss function. </p>
+<p>Usually used as the loss function for classification tasks. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">predicted</td><td>The predicted value for the target one-hot vector. All components of <em>predicted</em> should be positive, and sum up to 1. Usually <em>predicted</em> vector is an output of <code>softmax</code> operation. </td></tr>
     <tr><td class="paramname">target</td><td>A scalar value array (shape 1), containing a non-negative integer representing the 0-based index of the value 1 in the target one-hot vector. Notice that the back-propagation process will not proceed to this branch, that is, the <em>target</em> won't be updated (in case it's an output of some operation). </td></tr>
@@ -205,6 +209,51 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A scalar value array containing the computed loss. </dd></dl>
+
+</div>
+</div>
+<a id="a122f5d542b05e090a86a8df8f427f511"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a122f5d542b05e090a86a8df8f427f511">&#9670;&nbsp;</a></span>convolution_2d_with_padding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchloro_1_1_operand.html">Operand</a> chloro::operators::convolution_2d_with_padding </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td>
+          <td class="paramname"><em>filters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayShape &amp;&#160;</td>
+          <td class="paramname"><em>stride</em> = <code>{&#160;1,&#160;1&#160;}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform a 2D convolution operation with padding on the bottom-right side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>The input operand. Should be a 3D array of shape (rows x columns x feature map amount). </td></tr>
+    <tr><td class="paramname">filters</td><td>Filters array. Should be a 4D array of shape (filter amount x filter rows x filter columns x feature map amount). </td></tr>
+    <tr><td class="paramname">stride</td><td>Stride of convolution, should be a 2D shape. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result operand. </dd></dl>
 
 </div>
 </div>
@@ -265,7 +314,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Dot product of two vectors. The operands doesn't need to be real "vectors". This operator is a short-hard for multiplying <em>left</em> and <em>right</em> and doing a <code>sum</code> operation on the result. </p>
+<p>Dot product of two vectors. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>The operands doesn't need to be real "vectors". This operator is a short-hard for multiplying <em>left</em> and <em>right</em> and doing a <code>sum</code> operation on the result. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The rersult evaluates to the dot product of the two arrays. </dd></dl>
 
 </div>
@@ -366,6 +416,89 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a5242fdda46069019119a5e445e4192ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5242fdda46069019119a5e445e4192ea">&#9670;&nbsp;</a></span>max_pool_2d() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchloro_1_1_operand.html">Operand</a> chloro::operators::max_pool_2d </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>pool_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform a max pooling operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>The input operand. Should be a 3D array of shape (rows x columns x feature map amount). </td></tr>
+    <tr><td class="paramname">pool_size</td><td>Define pool size and pool stride to shape (stride x stride). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result operand. </dd></dl>
+
+</div>
+</div>
+<a id="adbca9db3357d275fcc79dc8062ecdae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbca9db3357d275fcc79dc8062ecdae6">&#9670;&nbsp;</a></span>max_pool_2d() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchloro_1_1_operand.html">Operand</a> chloro::operators::max_pool_2d </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayShape &amp;&#160;</td>
+          <td class="paramname"><em>pool_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayShape &amp;&#160;</td>
+          <td class="paramname"><em>pool_stride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform a max pooling operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>The input operand. Should be a 3D array of shape (rows x columns x feature map amount). </td></tr>
+    <tr><td class="paramname">pool_size</td><td>Pool size, should be a 2D shape. </td></tr>
+    <tr><td class="paramname">pool_stride</td><td>Stride of pooling, should be a 2D shape. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result operand. </dd></dl>
+
+</div>
+</div>
 <a id="ac6b2619fa7bbea9155b533bce25042d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac6b2619fa7bbea9155b533bce25042d3">&#9670;&nbsp;</a></span>multiply()</h2>
 
@@ -393,7 +526,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Multiply operator. Also in the form of <code>operator*</code>. </p>
-<dl class="section return"><dt>Returns</dt><dd>The result operand the evaluates to <em>left*right</em>. Notice that the multiplication is element-wise. For matrix multiplication, use the function <code>matrix_multiply</code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The result operand the evaluates to <em>left*right</em>. </dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>Notice that the multiplication is element-wise. For matrix multiplication, use the function <code>matrix_multiply</code>. </dd></dl>
 
 </div>
 </div>
@@ -447,7 +581,7 @@ Functions</h2></td></tr>
 <p>ReLU (rectified linear unit) operation. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">operand</td><td><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. Before evaluating and back-propagati...">Input</a> operand. Could be in any shape. </td></tr>
+    <tr><td class="paramname">operand</td><td><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a> operand. Could be in any shape. </td></tr>
   </table>
   </dd>
 </dl>
@@ -489,7 +623,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The result evaluates to the same result as <code>Array&lt;double&gt;::repeat</code>(scalar[0], <em>shape</em>). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The result evaluates to the same result as <code>Array&lt;double&gt;::repeat</code>(<em>scalar</em>[0], <em>shape</em>). </dd></dl>
 
 </div>
 </div>
@@ -550,7 +684,7 @@ Functions</h2></td></tr>
 <p>Sigmoid function. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">operand</td><td><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. Before evaluating and back-propagati...">Input</a> operand. Could be in any shape. </td></tr>
+    <tr><td class="paramname">operand</td><td><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a> operand. Could be in any shape. </td></tr>
   </table>
   </dd>
 </dl>
@@ -577,7 +711,7 @@ Functions</h2></td></tr>
 <p>Softmax function. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">operand</td><td><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. Before evaluating and back-propagati...">Input</a> operand. Could be in any shape. </td></tr>
+    <tr><td class="paramname">operand</td><td><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a> operand. Could be in any shape. </td></tr>
   </table>
   </dd>
 </dl>

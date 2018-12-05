@@ -74,7 +74,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>This class serves as a syntax tree for inserting multiple <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code> objects together into the same graph. For example, the expression <em>x*</em>(y+2) composes of two operators, the addition and the multiplication, together with references to nodes <em>x</em> and <em>y</em>. Explicitly usage of this class is not recommended, except when you're trying to implement more operators by yourself. Explicit construction of this class is not recommended as well, since only rvalue references to this object is used in this library.  
+<p>This class serves as a syntax tree for inserting multiple <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code> objects together into the same graph.  
  <a href="classchloro_1_1_operand.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="operand_8h_source.html">operand.h</a>&gt;</code></p>
@@ -82,30 +82,83 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9286b919ff986b20a65db7641e698b8f"><td class="memItemLeft" align="right" valign="top"><a id="a9286b919ff986b20a65db7641e698b8f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Operand</b> (const <a class="el" href="classchloro_1_1_operand.html">Operand</a> &amp;)=default</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operand.html#a9286b919ff986b20a65db7641e698b8f">Operand</a> (const <a class="el" href="classchloro_1_1_operand.html">Operand</a> &amp;)=default</td></tr>
+<tr class="memdesc:a9286b919ff986b20a65db7641e698b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor. <br /></td></tr>
 <tr class="separator:a9286b919ff986b20a65db7641e698b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e9fdcd7d74de1390bdd0b8125354224"><td class="memItemLeft" align="right" valign="top"><a id="a0e9fdcd7d74de1390bdd0b8125354224"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Operand</b> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> &amp;&amp;)=default</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operand.html#a0e9fdcd7d74de1390bdd0b8125354224">Operand</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> &amp;&amp;)=default</td></tr>
+<tr class="memdesc:a0e9fdcd7d74de1390bdd0b8125354224"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor. <br /></td></tr>
 <tr class="separator:a0e9fdcd7d74de1390bdd0b8125354224"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5630943a7f265aa640b5f90646677dbd"><td class="memItemLeft" align="right" valign="top"><a id="a5630943a7f265aa640b5f90646677dbd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Operand</b> (const NodeRef ref)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operand.html#a5630943a7f265aa640b5f90646677dbd">Operand</a> (const NodeRef ref)</td></tr>
+<tr class="memdesc:a5630943a7f265aa640b5f90646677dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an operand with only a node reference but no operators implicitly using a node reference. <br /></td></tr>
 <tr class="separator:a5630943a7f265aa640b5f90646677dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bfaaa25639213abb9d93bad45fe9813"><td class="memItemLeft" align="right" valign="top"><a id="a4bfaaa25639213abb9d93bad45fe9813"></a>
-const ArrayShape &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>shape</b> () const</td></tr>
+const ArrayShape &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operand.html#a4bfaaa25639213abb9d93bad45fe9813">shape</a> () const</td></tr>
+<tr class="memdesc:a4bfaaa25639213abb9d93bad45fe9813"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the shape of the last operator listed in this operand. If there's not any, return the shape of the last node reference. <br /></td></tr>
 <tr class="separator:a4bfaaa25639213abb9d93bad45fe9813"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abeb636899223a9cbdb958f03e1ef0bb7"><td class="memItemLeft" align="right" valign="top"><a id="abeb636899223a9cbdb958f03e1ef0bb7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>for_each</b> (Func &amp;&amp;func)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operand.html#abeb636899223a9cbdb958f03e1ef0bb7">for_each</a> (Func &amp;&amp;func)</td></tr>
+<tr class="memdesc:abeb636899223a9cbdb958f03e1ef0bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a function on each of the operators listed in this object. <br /></td></tr>
 <tr class="separator:abeb636899223a9cbdb958f03e1ef0bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a13127b75a9d1c53e14b6765932318e12"><td class="memItemLeft" align="right" valign="top"><a id="a13127b75a9d1c53e14b6765932318e12"></a>
-static <a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><b>join</b> (<a class="el" href="classchloro_1_1_operator.html">Operator</a> &amp;&amp;value, std::initializer_list&lt; <a class="el" href="classchloro_1_1_operand.html">Operand</a> &gt; childs)</td></tr>
+<tr class="memitem:a13127b75a9d1c53e14b6765932318e12"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operand.html#a13127b75a9d1c53e14b6765932318e12">join</a> (<a class="el" href="classchloro_1_1_operator.html">Operator</a> &amp;&amp;value, std::initializer_list&lt; <a class="el" href="classchloro_1_1_operand.html">Operand</a> &gt; childs)</td></tr>
+<tr class="memdesc:a13127b75a9d1c53e14b6765932318e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Join one or more operands together with an operator.  <a href="#a13127b75a9d1c53e14b6765932318e12">More...</a><br /></td></tr>
 <tr class="separator:a13127b75a9d1c53e14b6765932318e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class serves as a syntax tree for inserting multiple <code><a class="el" href="classchloro_1_1_operator.html">Operator</a></code> objects together into the same graph. For example, the expression <em>x*</em>(y+2) composes of two operators, the addition and the multiplication, together with references to nodes <em>x</em> and <em>y</em>. Explicitly usage of this class is not recommended, except when you're trying to implement more operators by yourself. Explicit construction of this class is not recommended as well, since only rvalue references to this object is used in this library. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p>This class serves as a syntax tree for inserting multiple <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code> objects together into the same graph. </p>
+<p>For example, the expression <em>x*(y+2)</em> composes of two <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code>s, the addition and the multiplication, together with references to nodes <em>x</em> and <em>y</em>. Explicitly usage of this class is not recommended, except when you're trying to implement more operators by yourself. In such cases, please refer to the implementations in namespace <code><a class="el" href="namespacechloro_1_1operators.html" title="This namespace contains most functions that work like operators, that is, taking some operands as inp...">chloro::operators</a></code>. Explicit construction of this class is not recommended as well, since only rvalue references to this object is used in this library. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a13127b75a9d1c53e14b6765932318e12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13127b75a9d1c53e14b6765932318e12">&#9670;&nbsp;</a></span>join()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classchloro_1_1_operand.html">Operand</a> chloro::Operand::join </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_operator.html">Operator</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::initializer_list&lt; <a class="el" href="classchloro_1_1_operand.html">Operand</a> &gt;&#160;</td>
+          <td class="paramname"><em>childs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Join one or more operands together with an operator. </p>
+<p>For example, for <em>x+y*z</em>, the plus operator joins two operands together: The operand containing only a <code>NodeRef</code> <em>x</em>, together with the operand containing an multiplication operator and two <code>NodeRef</code>s to <em>y</em> and <em>z</em>. For more information about this, see implementations in namespace <code><a class="el" href="namespacechloro_1_1operators.html" title="This namespace contains most functions that work like operators, that is, taking some operands as inp...">chloro::operators</a></code>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The operator joining the given operands. </td></tr>
+    <tr><td class="paramname">childs</td><td>The operands to join. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Joined operand. </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>chlorolearn/graph/<a class="el" href="operand_8h_source.html">operand.h</a></li>
 </ul>
 </div><!-- contents -->

@@ -72,28 +72,281 @@ $(function() {
 <div class="title">chloro::Operator Class Reference<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This kind of node content holds a lazy-evaluated operation.  
+ <a href="classchloro_1_1_operator.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="operator_8h_source.html">operator.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad9a52a646fc79ae083b3d925f3c5e1ad"><td class="memItemLeft" align="right" valign="top"><a id="ad9a52a646fc79ae083b3d925f3c5e1ad"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Operator</b> (Evaluation &amp;&amp;evaluation, Backward &amp;&amp;backward, const ArrayShape &amp;shape)</td></tr>
+<tr class="memitem:ad9a52a646fc79ae083b3d925f3c5e1ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operator.html#ad9a52a646fc79ae083b3d925f3c5e1ad">Operator</a> (Evaluation &amp;&amp;evaluation, Backward &amp;&amp;backward, const ArrayShape &amp;<a class="el" href="classchloro_1_1_operator.html#ab90d06063f44ce7af5f6abaf42864272">shape</a>)</td></tr>
+<tr class="memdesc:ad9a52a646fc79ae083b3d925f3c5e1ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an operator with same process for evaluation and forward propagation.  <a href="#ad9a52a646fc79ae083b3d925f3c5e1ad">More...</a><br /></td></tr>
 <tr class="separator:ad9a52a646fc79ae083b3d925f3c5e1ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aeb1bd3eb5cf67543121ac9164e4de9"><td class="memItemLeft" align="right" valign="top"><a id="a6aeb1bd3eb5cf67543121ac9164e4de9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Operator</b> (Evaluation &amp;&amp;evaluation, Forward &amp;&amp;forward, Backward &amp;&amp;backward, const ArrayShape &amp;shape, const ArrayShape &amp;state_shape={})</td></tr>
+<tr class="memitem:a6aeb1bd3eb5cf67543121ac9164e4de9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operator.html#a6aeb1bd3eb5cf67543121ac9164e4de9">Operator</a> (Evaluation &amp;&amp;evaluation, Forward &amp;&amp;forward, Backward &amp;&amp;backward, const ArrayShape &amp;<a class="el" href="classchloro_1_1_operator.html#ab90d06063f44ce7af5f6abaf42864272">shape</a>, const ArrayShape &amp;state_shape={})</td></tr>
+<tr class="memdesc:a6aeb1bd3eb5cf67543121ac9164e4de9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an operator with different processes for evaluation and forward propagation.  <a href="#a6aeb1bd3eb5cf67543121ac9164e4de9">More...</a><br /></td></tr>
 <tr class="separator:a6aeb1bd3eb5cf67543121ac9164e4de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab90d06063f44ce7af5f6abaf42864272"><td class="memItemLeft" align="right" valign="top"><a id="ab90d06063f44ce7af5f6abaf42864272"></a>
-const ArrayShape &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>shape</b> () const</td></tr>
+const ArrayShape &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operator.html#ab90d06063f44ce7af5f6abaf42864272">shape</a> () const</td></tr>
+<tr class="memdesc:ab90d06063f44ce7af5f6abaf42864272"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the shape of the evaluation result. <br /></td></tr>
 <tr class="separator:ab90d06063f44ce7af5f6abaf42864272"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bde3137e4a9b4daa6c906f662c33c55"><td class="memItemLeft" align="right" valign="top"><a id="a7bde3137e4a9b4daa6c906f662c33c55"></a>
-<a class="el" href="classchloro_1_1_array.html">OutParam</a>&#160;</td><td class="memItemRight" valign="bottom"><b>evaluate</b> (InParams params) const</td></tr>
+<tr class="memitem:a7bde3137e4a9b4daa6c906f662c33c55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_array.html">OutParam</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operator.html#a7bde3137e4a9b4daa6c906f662c33c55">evaluate</a> (InParams params) const</td></tr>
+<tr class="memdesc:a7bde3137e4a9b4daa6c906f662c33c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates this node given the values of its childs.  <a href="#a7bde3137e4a9b4daa6c906f662c33c55">More...</a><br /></td></tr>
 <tr class="separator:a7bde3137e4a9b4daa6c906f662c33c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4adf8760e157affbfa7cbd0c89266470"><td class="memItemLeft" align="right" valign="top"><a id="a4adf8760e157affbfa7cbd0c89266470"></a>
-<a class="el" href="classchloro_1_1_array.html">OutParam</a>&#160;</td><td class="memItemRight" valign="bottom"><b>forward_propagate</b> (InParams childs)</td></tr>
+<tr class="memitem:a4adf8760e157affbfa7cbd0c89266470"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_array.html">OutParam</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operator.html#a4adf8760e157affbfa7cbd0c89266470">forward_propagate</a> (InParams childs)</td></tr>
+<tr class="memdesc:a4adf8760e157affbfa7cbd0c89266470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward propagates the value through this node.  <a href="#a4adf8760e157affbfa7cbd0c89266470">More...</a><br /></td></tr>
 <tr class="separator:a4adf8760e157affbfa7cbd0c89266470"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab0671c0523825acff4c0e99b605fb62"><td class="memItemLeft" align="right" valign="top"><a id="aab0671c0523825acff4c0e99b605fb62"></a>
-OutParams&#160;</td><td class="memItemRight" valign="bottom"><b>back_propogate</b> (<a class="el" href="classchloro_1_1_array.html">InParam</a> gradient, InParams childs, <a class="el" href="classchloro_1_1_array.html">InParam</a> value)</td></tr>
+<tr class="memitem:aab0671c0523825acff4c0e99b605fb62"><td class="memItemLeft" align="right" valign="top">OutParams&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_operator.html#aab0671c0523825acff4c0e99b605fb62">back_propogate</a> (<a class="el" href="classchloro_1_1_array.html">InParam</a> gradient, InParams childs, <a class="el" href="classchloro_1_1_array.html">InParam</a> value)</td></tr>
+<tr class="memdesc:aab0671c0523825acff4c0e99b605fb62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Back propagate the gradient to the childs.  <a href="#aab0671c0523825acff4c0e99b605fb62">More...</a><br /></td></tr>
 <tr class="separator:aab0671c0523825acff4c0e99b605fb62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This kind of node content holds a lazy-evaluated operation. </p>
+<p>This class is the heart of this library. The other three types of nodes only contains user input or a specific value, while this type of node does not contain an array value per se, but like other nodes, operators have fixed shapes as well. Other nodes can be connected to an operator node, for example, connect two variable nodes to a plus operator.</p>
+<p>An operator has three operating mode: Evaluation, forward propagation and back propagation. This three modes corresponds to three private fields of the object. Evaluation takes some array values and returns a single array value, like plus operator taking two arrays and returning the sum. Forward propagation evaluates the value, but can also set the internal state of the operator for further use. Note that, the returned value of evaluation and forward propagation may not be the same, for example, the DropOut operator. Back propagation takes the forward propagated value of this node, and the values of its child nodes, together with the internal state, propagates the received gradient back to the child nodes of this operator. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad9a52a646fc79ae083b3d925f3c5e1ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a52a646fc79ae083b3d925f3c5e1ad">&#9670;&nbsp;</a></span>Operator() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">chloro::Operator::Operator </td>
+          <td>(</td>
+          <td class="paramtype">Evaluation &amp;&amp;&#160;</td>
+          <td class="paramname"><em>evaluation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Backward &amp;&amp;&#160;</td>
+          <td class="paramname"><em>backward</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayShape &amp;&#160;</td>
+          <td class="paramname"><em>shape</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct an operator with same process for evaluation and forward propagation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">evaluation</td><td>The evaluation function. </td></tr>
+    <tr><td class="paramname">backward</td><td>The back propagation function. </td></tr>
+    <tr><td class="paramname">shape</td><td>The shape of the evaluation result. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6aeb1bd3eb5cf67543121ac9164e4de9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aeb1bd3eb5cf67543121ac9164e4de9">&#9670;&nbsp;</a></span>Operator() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">chloro::Operator::Operator </td>
+          <td>(</td>
+          <td class="paramtype">Evaluation &amp;&amp;&#160;</td>
+          <td class="paramname"><em>evaluation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Forward &amp;&amp;&#160;</td>
+          <td class="paramname"><em>forward</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Backward &amp;&amp;&#160;</td>
+          <td class="paramname"><em>backward</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayShape &amp;&#160;</td>
+          <td class="paramname"><em>shape</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayShape &amp;&#160;</td>
+          <td class="paramname"><em>state_shape</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct an operator with different processes for evaluation and forward propagation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">evaluation</td><td>The evaluation function. </td></tr>
+    <tr><td class="paramname">forward</td><td>The forward propagation function. </td></tr>
+    <tr><td class="paramname">backward</td><td>The back propagation function. </td></tr>
+    <tr><td class="paramname">shape</td><td>The shape of the evaluation result. </td></tr>
+    <tr><td class="paramname">state_shape</td><td>The shape of the state array, defaults to the same as that of the result. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aab0671c0523825acff4c0e99b605fb62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab0671c0523825acff4c0e99b605fb62">&#9670;&nbsp;</a></span>back_propogate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">OutParams chloro::Operator::back_propogate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_array.html">InParam</a>&#160;</td>
+          <td class="paramname"><em>gradient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InParams&#160;</td>
+          <td class="paramname"><em>childs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_array.html">InParam</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Back propagate the gradient to the childs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gradient</td><td>Propagated gradient of the target node w.r.t. this node. </td></tr>
+    <tr><td class="paramname">childs</td><td>Forward propagated values of child nodes. </td></tr>
+    <tr><td class="paramname">value</td><td>The forward propagated value of this node. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Propagated gradient of the target node w.r.t. child nodes of this node. </dd></dl>
+
+</div>
+</div>
+<a id="a7bde3137e4a9b4daa6c906f662c33c55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bde3137e4a9b4daa6c906f662c33c55">&#9670;&nbsp;</a></span>evaluate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchloro_1_1_array.html">OutParam</a> chloro::Operator::evaluate </td>
+          <td>(</td>
+          <td class="paramtype">InParams&#160;</td>
+          <td class="paramname"><em>params</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Evaluates this node given the values of its childs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">params</td><td>Evaluated values of child nodes. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The evaluated value of this node. </dd></dl>
+
+</div>
+</div>
+<a id="a4adf8760e157affbfa7cbd0c89266470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4adf8760e157affbfa7cbd0c89266470">&#9670;&nbsp;</a></span>forward_propagate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchloro_1_1_array.html">OutParam</a> chloro::Operator::forward_propagate </td>
+          <td>(</td>
+          <td class="paramtype">InParams&#160;</td>
+          <td class="paramname"><em>childs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Forward propagates the value through this node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">childs</td><td>Forward propagated values of child nodes. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The forward propagated value of this node. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>chlorolearn/graph/nodes/<a class="el" href="operator_8h_source.html">operator.h</a></li>
 </ul>

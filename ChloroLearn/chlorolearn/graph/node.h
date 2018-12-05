@@ -17,11 +17,12 @@ namespace chloro
     using ArrayRef = std::reference_wrapper<const Array<double>>;
 
     /**
-     * \brief A class representing a node in the DAG flow graph. Users should \b not construct objects
-     * of this type manually, \b neither should users manually construct any of the four node content types
-     * to be mentioned below. Use the \a add_... methods of class \c Graph instead. Nodes can contain
-     * contents of types including \c Input, \c Constant, \c Variable and \c Operator. For more information on
-     * these four node types, please see their own documentation and implementation respectively.
+     * \brief A class representing a node in the DAG flow graph.
+     * \details Users should \b not construct objects of this type manually, \b neither should users
+     * manually construct any of the four node content types to be mentioned below. Use the \a add_... 
+     * methods of class \c Graph instead. Nodes can contain contents of types including \c Input, \c 
+     * Constant, \c Variable and \c Operator. For more information on these four node types, please 
+     * refer to their own documentation and implementation respectively.
      */
     class Node final
     {
@@ -42,15 +43,20 @@ namespace chloro
         void back_propagate(const Array<double>& gradient);
     public:
         Node() = delete;
-        Node(Node&&) = default;
+        Node(Node&&) = default; /**< \brief Move constructor. */
         explicit Node(Input& content) = delete;
         explicit Node(Constant& content) = delete;
         explicit Node(Variable& content) = delete;
         explicit Node(Operator& content, const std::vector<NodeRef>&) = delete;
+        /** \brief Move construct a node of content type \c Input. */
         explicit Node(Input&& content) :content_(content) {}
+        /** \brief Move construct a node of content type \c Constant. */
         explicit Node(Constant&& content) :content_(content) {}
+        /** \brief Move construct a node of content type \c Variable. */
         explicit Node(Variable&& content) :content_(content) {}
+        /** \brief Move construct a node of content type \c Operator, and link up the nodes. */
         explicit Node(Operator&& content, const std::vector<NodeRef>& from_nodes);
+        /** \brief Get the shape of the node content. */
         const ArrayShape& shape();
     };
 }
