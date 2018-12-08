@@ -3,18 +3,26 @@
 #include <string>
 #include <list>
 #include <initializer_list>
+#include <functional>
 
 #include "node.h"
 #include "input_param.h"
 #include "input_pack.h"
 #include "operand.h"
+#include "optimizer.h"
 
 namespace chloro
 {
     /**
+     * \brief Callback function type of batch callback and epoch callback. The double parameter is
+     * the elapsed time of the last batch / epoch.
+     */
+    using Callback = std::function<void(double)>;
+
+    /**
      * \brief A class representing a flow graph.
-     * \details All computational works are done through manipulations of a \c Graph. 
-     * All the operations in a graph is lazy-evaluated, that is, the values are calculated 
+     * \details All computational works are done through manipulations of a \c Graph.
+     * All the operations in a graph is lazy-evaluated, that is, the values are calculated
      * every time you call the \c get_value method, but not when you construct the graph.
      */
     class Graph final
@@ -34,8 +42,8 @@ namespace chloro
          */
         Node& add_input(const ArrayShape& shape = { 1 });
         /**
-         * \brief Add a \c Variable node of a specific shape into this graph. 
-         * \details The variable will be initialized randomly using \c Array<double>::random.
+         * \brief Add a \c Variable node of a specific shape into this graph.
+         * \details The variable will be initialized to zero.
          * \param shape The shape of the added node. Defaults to { 1 } (scalar input).
          * \return A reference to the added node.
          */
@@ -62,7 +70,7 @@ namespace chloro
         Node& add_operator(Operand&& list);
         /**
          * \brief Evaluates a node in the graph.
-         * \details This method evaluates the \c Operator nodes in evaluation mode, that is not updating state 
+         * \details This method evaluates the \c Operator nodes in evaluation mode, that is not updating state
          * variables and not performing computations like dropouts. For more information on evaluation modes, see
          * document for \c Operator.
          * \param node The node to evaluate.
@@ -79,21 +87,30 @@ namespace chloro
          */
         void set_variable(Node& node, const Array<double>& value) const;
         /**
+         * \brief Random variable values using a normal distribution.
+         * \param mean Mean of the distribution.
+         * \param stddev Standard deviation of the distribution. Defaults to 1.0.
+         */
+        void randomize_variables(double mean = 0.0, double stddev = 1.0);
+        /**
          * \brief Optimize the target once using gradient descent method.
          * \param target The target \c Operator node to minimize.
          * \param input_params An \c std::initializer_list of <tt>InputParam</tt>s for \c Input nodes.
-         * \param learning_rate Learning rate (step size relative to the gradient). Defaults to 1e-3.
+         * \param optimizer The optimizer that will be used.
          */
-        void optimize_once(Node& target, std::initializer_list<InputParam> input_params = {}, double learning_rate = 1e-3);
+        void optimize_once(Node& target, std::initializer_list<InputParam> input_params, const Optimizer& optimizer);
         /**
          * \brief Optimize the target several times using SGD (stochastic gradient descent) method.
-         * \param batch_size How many times to perform the SGD method.
          * \param target The target \c Operator node to minimize.
          * \param input_pack An \c std::initializer_list of <tt>InputPack</tt>s for \c Input nodes.
-         * \param learning_rate Learning rate (step size relative to the gradient). Defaults to 1e-3.
+         * \param optimizer The optimizer that will be used.
+         * \param batch_size How many times to perform the SGD method.
+         * \param batch_callback A callback function that will be called after every batch is finished.
+         * \param epoch_callback A callback function that will be called after every epoch is finished.
          */
-        void optimize(size_t batch_size, Node& target, std::initializer_list<InputPack> input_pack = {},
-            double learning_rate = 0.001);
+        void optimize(Node& target, std::initializer_list<InputPack> input_pack,
+            const Optimizer& optimizer, size_t batch_size, Callback&& batch_callback = nullptr,
+            Callback&& epoch_callback = nullptr);
         /**
          * \brief Save current values of variables in the graph to a data file.
          * \param path The full path or relative path to the data file.

@@ -2,6 +2,8 @@
 
 namespace chloro
 {
+    void Node::set_optimizer(const Optimizer& optimizer) { optimizer_ = optimizer; }
+
     void Node::clear_gradient()
     {
         switch (content_.index())
@@ -12,10 +14,10 @@ namespace chloro
         }
     }
 
-    void Node::apply_gradient(const double learning_rate)
+    void Node::apply_gradient()
     {
         if (content_.index() != 2) return; // Not Variable
-        std::get<2>(content_).substract_from_current(learning_rate * gradient_);
+        std::get<2>(content_).substract_from_current(optimizer_(gradient_));
     }
 
     const Array<double>& Node::get_value()
@@ -82,12 +84,6 @@ namespace chloro
             return;
         default: throw ArgumentOutOfRangeException("Current node is in invalid state");
         }
-    }
-
-    Node::Node(Operator&& content, const std::vector<NodeRef>& from_nodes)
-        :from_nodes_(from_nodes), content_(content)
-    {
-        for (NodeRef from : from_nodes) from.get().to_nodes_.emplace_back(*this);
     }
 
     const ArrayShape& Node::shape()

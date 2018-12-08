@@ -1,4 +1,5 @@
 #include <numeric>
+#include <random>
 
 #include "basic_operators.h"
 #include "neural_network.h"
@@ -128,8 +129,6 @@ namespace chloro::operators
         const size_t output_size = output_row * output_column * features;
         const auto input_index = [=](const size_t i, const size_t j, const size_t k)
         { return (i * input_column + j) * features + k; };
-        const auto output_index = [=](const size_t i, const size_t j, const size_t k)
-        { return (i * output_column + j) * features + k; };
         Operator op(
             [=](InParams params)
             {
@@ -188,6 +187,30 @@ namespace chloro::operators
                 for (size_t i = 0; i < output_size; i++) result[size_t(state[i])] = gradient[i];
                 return OutParams{ result };
             }, output_shape);
+        return Operand::join(std::move(op), { std::move(input) });
+    }
+
+    Operand dropout(Operand input, const double dropout_rate)
+    {
+        const double kept_rate = 1 - dropout_rate;
+        Operator op([=](InParams params) { return kept_rate * params[0]; },
+            [=](ForwardParams params)
+            {
+                static std::mt19937 generator{ std::random_device{}() };
+                static std::bernoulli_distribution distribution(kept_rate);
+                Array<double> result = params.childs[0];
+                StateParam state = params.state;
+                const size_t size = result.size();
+                for (size_t i = 0; i < size; i++)
+                {
+                    const bool keep = distribution(generator);
+                    result[i] *= keep;
+                    state[i] = keep;
+                }
+                return result;
+            },
+            [=](const BackwardParams params) { return OutParams{ params.state * params.gradient }; },
+                input.shape());
         return Operand::join(std::move(op), { std::move(input) });
     }
 }

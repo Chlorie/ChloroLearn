@@ -127,6 +127,7 @@
     <ClCompile Include="chlorolearn\graph\operators\layer.cpp" />
     <ClCompile Include="chlorolearn\graph\operators\loss.cpp" />
     <ClCompile Include="chlorolearn\graph\operators\neural_network.cpp" />
+    <ClCompile Include="chlorolearn\graph\optimizer.cpp" />
     <ClCompile Include="chlorolearn\utility\utility.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="chlorolearn\graph\operators\layer.h" />
     <ClInclude Include="chlorolearn\graph\operators\loss.h" />
     <ClInclude Include="chlorolearn\graph\operators\neural_network.h" />
+    <ClInclude Include="chlorolearn\graph\optimizer.h" />
     <ClInclude Include="chlorolearn\utility\binary_io.h" />
     <ClInclude Include="chlorolearn\utility\stopwatch.h" />
     <ClInclude Include="chlorolearn\utility\utility.h" />

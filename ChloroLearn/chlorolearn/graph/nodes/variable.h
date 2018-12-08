@@ -17,9 +17,9 @@ namespace chloro
         Variable() = delete;
         /**
          * \brief Construct a variable with the specific array size, and initialize the value
-         * of it randomly by calling \c Array<double>::random.
+         * of it to zero.
          */
-        explicit Variable(const ArrayShape& size) :value_(Array<double>::random(size)) {}
+        explicit Variable(const ArrayShape& size) :value_(Array<double>::zeros(size)) {}
         /** \brief Get current value of this variable. */
         const Array<double>& value() const { return value_; }
         /** \brief Explicitly set the value of this variable to some array. */

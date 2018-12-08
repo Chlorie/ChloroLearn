@@ -86,10 +86,10 @@ namespace chloro
          * \brief Constructs an array filled with random numbers (normally distributed with mean of 0
          * and standard deviation of 1) with the given shape.
          */
-        static Array random(const ArrayShape& shape)
+        static Array random(const ArrayShape& shape, const double mean = 0.0, const double stddev = 1.0)
         {
-            static std::mt19937 generator{ std::random_device()() };
-            static std::normal_distribution distribution;
+            static std::mt19937 generator{ std::random_device{}() };
+            std::normal_distribution distribution{ mean, stddev };
             size_t size = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<size_t>());
             Array result;
             result.shape_ = shape;

@@ -105,12 +105,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e3171aa1c61c0cb869607cb354b7960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a8e3171aa1c61c0cb869607cb354b7960">set_variable</a> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;node, const <a class="el" href="classchloro_1_1_array.html">Array</a>&lt; double &gt; &amp;value) const</td></tr>
 <tr class="memdesc:a8e3171aa1c61c0cb869607cb354b7960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly set the value of a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. ">Variable</a></code> node. Can be used in order to customize graph saving and loading.  <a href="#a8e3171aa1c61c0cb869607cb354b7960">More...</a><br /></td></tr>
 <tr class="separator:a8e3171aa1c61c0cb869607cb354b7960"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8736a7530ff743487826d9ff9da86d3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a8736a7530ff743487826d9ff9da86d3a">optimize_once</a> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;target, std::initializer_list&lt; <a class="el" href="structchloro_1_1_input_param.html">InputParam</a> &gt; input_params={}, double learning_rate=1e-3)</td></tr>
-<tr class="memdesc:a8736a7530ff743487826d9ff9da86d3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimize the target once using gradient descent method.  <a href="#a8736a7530ff743487826d9ff9da86d3a">More...</a><br /></td></tr>
-<tr class="separator:a8736a7530ff743487826d9ff9da86d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00658b5953b09bee29c7fc99bf740427"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a00658b5953b09bee29c7fc99bf740427">optimize</a> (size_t batch_size, <a class="el" href="classchloro_1_1_node.html">Node</a> &amp;target, std::initializer_list&lt; <a class="el" href="structchloro_1_1_input_pack.html">InputPack</a> &gt; input_pack={}, double learning_rate=0.001)</td></tr>
-<tr class="memdesc:a00658b5953b09bee29c7fc99bf740427"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimize the target several times using SGD (stochastic gradient descent) method.  <a href="#a00658b5953b09bee29c7fc99bf740427">More...</a><br /></td></tr>
-<tr class="separator:a00658b5953b09bee29c7fc99bf740427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a062e511485631ccc72eb3866e966d448"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a062e511485631ccc72eb3866e966d448">randomize_variables</a> (double mean=0.0, double stddev=1.0)</td></tr>
+<tr class="memdesc:a062e511485631ccc72eb3866e966d448"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random variable values using a normal distribution.  <a href="#a062e511485631ccc72eb3866e966d448">More...</a><br /></td></tr>
+<tr class="separator:a062e511485631ccc72eb3866e966d448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a106cc8c295b5ea89dbfb3d19b6765e0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a106cc8c295b5ea89dbfb3d19b6765e0e">optimize_once</a> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;target, std::initializer_list&lt; <a class="el" href="structchloro_1_1_input_param.html">InputParam</a> &gt; input_params, const Optimizer &amp;optimizer)</td></tr>
+<tr class="memdesc:a106cc8c295b5ea89dbfb3d19b6765e0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimize the target once using gradient descent method.  <a href="#a106cc8c295b5ea89dbfb3d19b6765e0e">More...</a><br /></td></tr>
+<tr class="separator:a106cc8c295b5ea89dbfb3d19b6765e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa9de8c9d9164e855b00f52d105b5685"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#afa9de8c9d9164e855b00f52d105b5685">optimize</a> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;target, std::initializer_list&lt; <a class="el" href="structchloro_1_1_input_pack.html">InputPack</a> &gt; input_pack, const Optimizer &amp;optimizer, size_t batch_size, Callback &amp;&amp;batch_callback=nullptr, Callback &amp;&amp;epoch_callback=nullptr)</td></tr>
+<tr class="memdesc:afa9de8c9d9164e855b00f52d105b5685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimize the target several times using SGD (stochastic gradient descent) method.  <a href="#afa9de8c9d9164e855b00f52d105b5685">More...</a><br /></td></tr>
+<tr class="separator:afa9de8c9d9164e855b00f52d105b5685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e86008fa03036473696fbf4f98c0460"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a8e86008fa03036473696fbf4f98c0460">save_variables</a> (const std::string &amp;path) const</td></tr>
 <tr class="memdesc:a8e86008fa03036473696fbf4f98c0460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save current values of variables in the graph to a data file.  <a href="#a8e86008fa03036473696fbf4f98c0460">More...</a><br /></td></tr>
 <tr class="separator:a8e86008fa03036473696fbf4f98c0460"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -248,7 +251,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. ">Variable</a></code> node of a specific shape into this graph. </p>
-<p>The variable will be initialized randomly using <code><a class="el" href="classchloro_1_1_array.html#ace2308d27489424ce9445213b7c1ec06" title="Constructs an array filled with random numbers (normally distributed with mean of 0 and standard devi...">Array&lt;double&gt;::random</a></code>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The variable will be initialized to zero. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">shape</td><td>The shape of the added node. Defaults to { 1 } (scalar input). </td></tr>
   </table>
@@ -322,8 +325,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a00658b5953b09bee29c7fc99bf740427"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00658b5953b09bee29c7fc99bf740427">&#9670;&nbsp;</a></span>optimize()</h2>
+<a id="afa9de8c9d9164e855b00f52d105b5685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa9de8c9d9164e855b00f52d105b5685">&#9670;&nbsp;</a></span>optimize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -331,12 +334,6 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void chloro::Graph::optimize </td>
           <td>(</td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>batch_size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype"><a class="el" href="classchloro_1_1_node.html">Node</a> &amp;&#160;</td>
           <td class="paramname"><em>target</em>, </td>
         </tr>
@@ -344,13 +341,31 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::initializer_list&lt; <a class="el" href="structchloro_1_1_input_pack.html">InputPack</a> &gt;&#160;</td>
-          <td class="paramname"><em>input_pack</em> = <code>{}</code>, </td>
+          <td class="paramname"><em>input_pack</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>learning_rate</em> = <code>0.001</code>&#160;</td>
+          <td class="paramtype">const Optimizer &amp;&#160;</td>
+          <td class="paramname"><em>optimizer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>batch_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Callback &amp;&amp;&#160;</td>
+          <td class="paramname"><em>batch_callback</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Callback &amp;&amp;&#160;</td>
+          <td class="paramname"><em>epoch_callback</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -363,18 +378,20 @@ Public Member Functions</h2></td></tr>
 <p>Optimize the target several times using SGD (stochastic gradient descent) method. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">batch_size</td><td>How many times to perform the SGD method. </td></tr>
     <tr><td class="paramname">target</td><td>The target <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code> node to minimize. </td></tr>
     <tr><td class="paramname">input_pack</td><td>An <code>std::initializer_list</code> of <code><a class="el" href="structchloro_1_1_input_pack.html" title="An aggregate struct for providing a series of inputs for an Input node at once. ">InputPack</a></code>s for <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a></code> nodes. </td></tr>
-    <tr><td class="paramname">learning_rate</td><td>Learning rate (step size relative to the gradient). Defaults to 1e-3. </td></tr>
+    <tr><td class="paramname">optimizer</td><td>The optimizer that will be used. </td></tr>
+    <tr><td class="paramname">batch_size</td><td>How many times to perform the SGD method. </td></tr>
+    <tr><td class="paramname">batch_callback</td><td>A callback function that will be called after every batch is finished. </td></tr>
+    <tr><td class="paramname">epoch_callback</td><td>A callback function that will be called after every epoch is finished. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a8736a7530ff743487826d9ff9da86d3a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8736a7530ff743487826d9ff9da86d3a">&#9670;&nbsp;</a></span>optimize_once()</h2>
+<a id="a106cc8c295b5ea89dbfb3d19b6765e0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a106cc8c295b5ea89dbfb3d19b6765e0e">&#9670;&nbsp;</a></span>optimize_once()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -389,13 +406,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::initializer_list&lt; <a class="el" href="structchloro_1_1_input_param.html">InputParam</a> &gt;&#160;</td>
-          <td class="paramname"><em>input_params</em> = <code>{}</code>, </td>
+          <td class="paramname"><em>input_params</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>learning_rate</em> = <code>1e-3</code>&#160;</td>
+          <td class="paramtype">const Optimizer &amp;&#160;</td>
+          <td class="paramname"><em>optimizer</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -410,7 +427,44 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">target</td><td>The target <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code> node to minimize. </td></tr>
     <tr><td class="paramname">input_params</td><td>An <code>std::initializer_list</code> of <code><a class="el" href="structchloro_1_1_input_param.html" title="An aggregate struct for providing an input array for an Input node. ">InputParam</a></code>s for <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a></code> nodes. </td></tr>
-    <tr><td class="paramname">learning_rate</td><td>Learning rate (step size relative to the gradient). Defaults to 1e-3. </td></tr>
+    <tr><td class="paramname">optimizer</td><td>The optimizer that will be used. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a062e511485631ccc72eb3866e966d448"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a062e511485631ccc72eb3866e966d448">&#9670;&nbsp;</a></span>randomize_variables()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chloro::Graph::randomize_variables </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>mean</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>stddev</em> = <code>1.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Random variable values using a normal distribution. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mean</td><td>Mean of the distribution. </td></tr>
+    <tr><td class="paramname">stddev</td><td>Standard deviation of the distribution. Defaults to 1.0. </td></tr>
   </table>
   </dd>
 </dl>

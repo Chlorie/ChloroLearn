@@ -138,6 +138,9 @@ Functions</h2></td></tr>
 <tr class="memitem:adbca9db3357d275fcc79dc8062ecdae6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#adbca9db3357d275fcc79dc8062ecdae6">max_pool_2d</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> input, const ArrayShape &amp;pool_size, const ArrayShape &amp;pool_stride)</td></tr>
 <tr class="memdesc:adbca9db3357d275fcc79dc8062ecdae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a max pooling operation.  <a href="#adbca9db3357d275fcc79dc8062ecdae6">More...</a><br /></td></tr>
 <tr class="separator:adbca9db3357d275fcc79dc8062ecdae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70e5ff5bd40d5c47ba1386931e3dd00c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#a70e5ff5bd40d5c47ba1386931e3dd00c">dropout</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> input, double dropout_rate=0.5)</td></tr>
+<tr class="memdesc:a70e5ff5bd40d5c47ba1386931e3dd00c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a dropout operation.  <a href="#a70e5ff5bd40d5c47ba1386931e3dd00c">More...</a><br /></td></tr>
+<tr class="separator:a70e5ff5bd40d5c47ba1386931e3dd00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This namespace contains most functions that work like operators, that is, taking some operands as input and returning an operand as a result. </p>
@@ -317,6 +320,44 @@ Functions</h2></td></tr>
 <p>Dot product of two vectors. </p>
 <dl class="section remark"><dt>Remarks</dt><dd>The operands doesn't need to be real "vectors". This operator is a short-hard for multiplying <em>left</em> and <em>right</em> and doing a <code>sum</code> operation on the result. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The rersult evaluates to the dot product of the two arrays. </dd></dl>
+
+</div>
+</div>
+<a id="a70e5ff5bd40d5c47ba1386931e3dd00c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70e5ff5bd40d5c47ba1386931e3dd00c">&#9670;&nbsp;</a></span>dropout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchloro_1_1_operand.html">Operand</a> chloro::operators::dropout </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dropout_rate</em> = <code>0.5</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform a dropout operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>The input operand. Could be in any shape. </td></tr>
+    <tr><td class="paramname">dropout_rate</td><td>The dropout rate, indicating how much of a chance would a value in the array be dropped out. Defaults to 0.5. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result operand, whose shape is the same as the input. </dd></dl>
 
 </div>
 </div>

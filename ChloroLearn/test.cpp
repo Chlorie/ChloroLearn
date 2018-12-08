@@ -9,9 +9,10 @@
 #include "chlorolearn/utility/stopwatch.h"
 #include "chlorolearn/utility/utility.h"
 #include "chlorolearn/graph/operators/activation.h"
-#include "chlorolearn/graph/operators/neural_network.h"
 #include "chlorolearn/graph/operators/layer.h"
 #include "chlorolearn/graph/operators/loss.h"
+#include "chlorolearn/graph/operators/neural_network.h"
+#include "chlorolearn/graph/optimizer.h"
 
 void load_training_data(const std::string& file_name, chloro::DataValues& x, chloro::DataValues& y)
 {
@@ -27,7 +28,7 @@ void load_training_data(const std::string& file_name, chloro::DataValues& x, chl
         stream >> value;
         if (!stream.good()) break;
         y.push_back(chloro::Array<double>{ value });
-        x.push_back(chloro::Array<double>::zeros({ 784,1 }));
+        x.push_back(chloro::Array<double>::zeros({ 28,28,1 }));
         chloro::Array<double>& array = x.back();
         for (size_t i = 0; i < 784; i++)
         {
@@ -48,6 +49,7 @@ int main()
     using chloro::DataValues;
     namespace opr = chloro::operators;
     namespace lyr = chloro::layers;
+    namespace opt = chloro::optimizers;
 
     // Test: Real MNIST data test
     DataValues x, y;
@@ -65,48 +67,58 @@ int main()
 
     // Construct the graph
     Graph graph;
-    const NodeRef input = graph.add_input({ 784,1 });
-    const NodeRef dense_1 = lyr::dense_layer(graph, input, 200, opr::relu);
-    const NodeRef dense_2 = lyr::dense_layer(graph, dense_1, 80, opr::relu);
-    const NodeRef dense_3 = lyr::dense_layer(graph, dense_2, 25, opr::relu);
-    const NodeRef predicted = lyr::dense_layer(graph, dense_3, 10, opr::softmax);
+    const NodeRef input = graph.add_input({ 28,28,1 });
+    const NodeRef conv_1 = lyr::convolutional_2d(graph, input, 3, 16, 1, opr::relu);
+    const NodeRef conv_2 = lyr::convolutional_2d(graph, conv_1, 3, 16, 1, opr::relu);
+    const NodeRef pool_1 = graph.add_operator(opr::max_pool_2d(conv_2, 2));
+    const NodeRef dropout_1 = graph.add_operator(opr::dropout(pool_1, 0.25));
+    const NodeRef conv_3 = lyr::convolutional_2d(graph, dropout_1, 3, 32, 1, opr::relu);
+    const NodeRef conv_4 = lyr::convolutional_2d(graph, conv_3, 3, 32, 1, opr::relu);
+    const NodeRef pool_2 = graph.add_operator(opr::max_pool_2d(conv_4, 2));
+    const NodeRef dropout_2 = graph.add_operator(opr::dropout(pool_2, 0.25));
+    const NodeRef flat = graph.add_operator(opr::flatten(dropout_2));
+    const NodeRef dense_1 = lyr::dense_layer(graph, flat, 256, opr::relu);
+    const NodeRef dense_2 = lyr::dense_layer(graph, dense_1, 128, opr::relu);
+    const NodeRef predicted = lyr::dense_layer(graph, dense_2, 10, opr::softmax);
     const NodeRef target = graph.add_input();
     const NodeRef loss = graph.add_operator(opr::categorical_cross_entropy(predicted, target));
 
-    // Perform the optimization
-    size_t counter = 0;
-    const size_t batch_size = 5000;
+    graph.randomize_variables(0.0, 0.1);
 
-    graph.load_variables("result_250000.var");
+    const size_t batch_size = 1000;
+    const size_t save_period = 10000;
 
-    while (true)
-    {
-        // Optimize
+    graph.load_variables("result_190000.var");
+
+    // Start optimization
+    graph.optimize(loss, { {input, train_x}, {target, train_y} }, opt::sgd(1e-3), batch_size,
+        [&](const double time) // Batch callback
         {
-            Stopwatch stopwatch;
-            graph.optimize(batch_size, loss, { {input, train_x}, {target, train_y} }, 0.003);
-            stopwatch.stop();
+            static size_t counter = 0;
             counter += batch_size;
-            std::cout << counter << " times of back propagation finished -- "
-                << "Last " << batch_size << " elapsed " << stopwatch.seconds() << "s\n";
-        }
-        // Evaluation
-        {
-            const size_t test_size = test_x.size();
-            size_t correct_amount = 0;
-            Stopwatch stopwatch;
-            for (size_t i = 0; i < test_size; i++)
+            std::cout << counter << " passes finished -- Last iteration elapsed " << time << "s\n";
+            if (counter % save_period == 0)
             {
-                const std::vector<double>& result = graph.get_value(predicted, { {input, test_x[i]} }).data();
-                const size_t max_element = std::distance(result.begin(), std::max_element(result.begin(), result.end()));
-                if (max_element == size_t(test_y[i][0])) correct_amount++;
+                const size_t test_size = test_x.size();
+                size_t correct_amount = 0;
+                Stopwatch stopwatch;
+                for (size_t i = 0; i < test_size; i++)
+                {
+                    const std::vector<double>& result = graph.get_value(predicted, { {input, test_x[i]} }).data();
+                    const size_t max_element = std::distance(result.begin(), std::max_element(result.begin(), result.end()));
+                    if (max_element == size_t(test_y[i][0])) correct_amount++;
+                }
+                stopwatch.stop();
+                std::cout << "Evaluation finished, elapsed time " << stopwatch.seconds() << "s -- "
+                    << "Correct / Total = " << correct_amount << " / " << test_size
+                    << " = " << double(correct_amount) / test_size << '\n';
+                graph.save_variables("result_" + std::to_string(counter) + ".var");
             }
-            stopwatch.stop();
-            std::cout << "Evaluation finished, elapsed time " << stopwatch.seconds() << "s -- "
-                << "Correct / Total = " << correct_amount << " / " << test_size
-                << " = " << double(correct_amount) / test_size << '\n';
-        }
-        // Save weights and biases
-        if (counter % 50000 == 0) graph.save_variables("result_" + std::to_string(counter) + ".var");
-    }
+        },
+        [](const double time) // Epoch callback
+        {
+            static size_t counter = 0;
+            counter++;
+            std::cout << counter << " epochs finished -- Last epoch elapsed " << time << "s\n";
+        });
 }

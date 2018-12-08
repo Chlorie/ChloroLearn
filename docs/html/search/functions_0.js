@@ -1,6 +1,7 @@
 var searchData=
 [
   ['accumulate',['accumulate',['../classchloro_1_1_array.html#a3be47611f65819cdc5c53057da93c6c6',1,'chloro::Array']]],
+  ['adam',['adam',['../namespacechloro_1_1optimizers.html#a572b974ce1249b0c958c3dd8a069a074',1,'chloro::optimizers']]],
   ['add',['add',['../namespacechloro_1_1operators.html#acd12218ea3d288abd3f19222b07ac164',1,'chloro::operators']]],
   ['add_5fconstant',['add_constant',['../classchloro_1_1_graph.html#a9900605c01e822ebc9f5e1582086c1d5',1,'chloro::Graph::add_constant(const Array&lt; double &gt; &amp;array)'],['../classchloro_1_1_graph.html#abf19f2af5de4e6e814e8d8d5bb8e5e14',1,'chloro::Graph::add_constant(Array&lt; double &gt; &amp;&amp;array)']]],
   ['add_5finput',['add_input',['../classchloro_1_1_graph.html#a2e2a3ca8eb5a7ba0d79c9780578f7762',1,'chloro::Graph']]],

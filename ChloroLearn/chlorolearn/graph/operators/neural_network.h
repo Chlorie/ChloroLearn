@@ -33,4 +33,13 @@ namespace chloro::operators
      * \return The result operand.
      */
     Operand max_pool_2d(Operand input, const ArrayShape& pool_size, const ArrayShape& pool_stride);
+
+    /**
+     * \brief Perform a dropout operation.
+     * \param input The input operand. Could be in any shape.
+     * \param dropout_rate The dropout rate, indicating how much of a chance would a value in the array
+     * be dropped out. Defaults to 0.5.
+     * \return The result operand, whose shape is the same as the input.
+     */
+    Operand dropout(Operand input, double dropout_rate = 0.5);
 }

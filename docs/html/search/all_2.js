@@ -10,5 +10,6 @@ var searchData=
   ['convolutional_5f2d',['convolutional_2d',['../namespacechloro_1_1layers.html#a9e8fcc82c888c4099fdfbd335d438737',1,'chloro::layers::convolutional_2d(Graph &amp;graph, NodeRef input, size_t kernel_size, size_t filter_amount, size_t stride=1, Activation &amp;&amp;activation=nullptr)'],['../namespacechloro_1_1layers.html#abd716b25e208700c96210934001b2aa6',1,'chloro::layers::convolutional_2d(Graph &amp;graph, NodeRef input, const ArrayShape &amp;kernel_size, size_t filter_amount, const ArrayShape &amp;stride={ 1, 1 }, Activation &amp;&amp;activation=nullptr)']]],
   ['chlorolearn',['ChloroLearn',['../index.html',1,'']]],
   ['layers',['layers',['../namespacechloro_1_1layers.html',1,'chloro']]],
-  ['operators',['operators',['../namespacechloro_1_1operators.html',1,'chloro']]]
+  ['operators',['operators',['../namespacechloro_1_1operators.html',1,'chloro']]],
+  ['optimizers',['optimizers',['../namespacechloro_1_1optimizers.html',1,'chloro']]]
 ];

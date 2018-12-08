@@ -1,12 +1,14 @@
 #pragma once
 
 #include <vector>
+#include <functional>
 
 #include "../basic/array.h"
 
 namespace chloro
 {
     using DataValues = std::vector<Array<double>>;
+
     /**
      * \brief Split the given data and labels to training set and test set.
      * \param data The input values that needs to be splitted.

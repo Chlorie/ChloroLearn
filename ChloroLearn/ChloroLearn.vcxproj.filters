@@ -45,6 +45,9 @@
     <ClCompile Include="chlorolearn\graph\operators\neural_network.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="chlorolearn\graph\optimizer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chlorolearn\basic\array.h">
@@ -105,6 +108,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="chlorolearn\basic\propagate_struct.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="chlorolearn\graph\optimizer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

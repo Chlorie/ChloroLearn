@@ -1,9 +1,11 @@
 #include <random>
+#include <algorithm>
 
 #include "graph.h"
 #include "nodes/input.h"
 #include "nodes/variable.h"
 #include "../utility/binary_io.h"
+#include "../utility/stopwatch.h"
 
 namespace chloro
 {
@@ -87,8 +89,19 @@ namespace chloro
         std::get<2>(node.content_).set_value(value);
     }
 
+    void Graph::randomize_variables(const double mean, const double stddev)
+    {
+        for (Node& node : nodes_)
+            if (node.content_.index() == 2) // Variable node
+            {
+                Variable& variable = std::get<2>(node.content_);
+                const ArrayShape& shape = variable.value().shape();
+                variable.set_value(Array<double>::random(shape, mean, stddev));
+            }
+    }
+
     void Graph::optimize_once(Node& target, const std::initializer_list<InputParam> input_params,
-        const double learning_rate)
+        const Optimizer& optimizer)
     {
         if (target.content_.index() != 3) throw IllegalOperationException("Target should be an operator");
         for (Node& node : nodes_)
@@ -96,46 +109,70 @@ namespace chloro
             node.update_time_ = 0;
             node.updated_time_ = 0;
             node.clear_gradient();
+            node.set_optimizer(optimizer);
         }
         update_dag(target);
         forward_propagate(target, input_params);
         target.back_propagate(Array<double>::repeats(1.0, target.shape()));
-        for (Node& node : nodes_) node.apply_gradient(learning_rate);
+        for (Node& node : nodes_) node.apply_gradient();
     }
 
-    void Graph::optimize(const size_t batch_size, Node& target, const std::initializer_list<InputPack> input_pack,
-        const double learning_rate)
+    void Graph::optimize(Node& target, const std::initializer_list<InputPack> input_pack,
+        const Optimizer& optimizer, const size_t batch_size, Callback&& batch_callback, Callback&& epoch_callback)
     {
         if (target.content_.index() != 3) throw IllegalOperationException("Target should be an operator");
         for (Node& node : nodes_) node.updated_time_ = 0;
-        size_t pack_size = 0;
+        size_t epoch_size = 0;
         bool first = true;
         for (const InputPack& item : input_pack)
         {
-            if (first) pack_size = item.pack.size();
-            if (pack_size != item.pack.size()) throw MismatchedSizesException("Input packs should be of the same size");
+            if (first) epoch_size = item.pack.size();
+            if (epoch_size != item.pack.size()) throw MismatchedSizesException("Input packs should be of the same size");
             first = false;
         }
-        static std::mt19937 generator{ std::random_device()() };
-        const std::uniform_int_distribution<> dist(0, pack_size == 0 ? 0 : pack_size - 1);
-        for (Node& node : nodes_) node.update_time_ = 0;
+        if (epoch_size == 0)
+            throw IllegalOperationException("In order to perform batch updates and count epochs, there must be at least "
+                "one input parameter.");
+        static std::mt19937 generator{ std::random_device{}() };
+        for (Node& node : nodes_)
+        {
+            node.update_time_ = 0;
+            node.set_optimizer(optimizer);
+        }
         update_dag(target);
         const Array<double> ones = Array<double>::repeats(1.0, target.shape());
-        for (size_t i = 0; i < batch_size; i++)
+        size_t counter = 0;
+        Stopwatch batch_watch;
+        while (true)
         {
-            for (Node& node : nodes_)
+            Stopwatch epoch_watch;
+            std::vector<size_t> permutation(epoch_size);
+            for (size_t i = 0; i < epoch_size; i++) permutation[i] = i;
+            std::shuffle(permutation.begin(), permutation.end(), generator);
+            for (size_t i = 0; i < epoch_size; i++)
             {
-                node.clear_gradient();
-                node.value_ready_ = false;
+                for (Node& node : nodes_)
+                {
+                    node.clear_gradient();
+                    node.value_ready_ = false;
+                }
+                for (const InputPack& item : input_pack) input(item.input, item.pack[permutation[i]]);
+                target.forward_propagate();
+                target.back_propagate(ones);
+                for (Node& node : nodes_) node.apply_gradient();
+                counter++;
+                if (counter % batch_size == 0 && batch_callback)
+                {
+                    batch_watch.stop();
+                    batch_callback(batch_watch.seconds());
+                    batch_watch.restart();
+                }
             }
-            if (pack_size != 0)
+            if (epoch_callback)
             {
-                const int index = dist(generator);
-                for (const InputPack& item : input_pack) input(item.input, item.pack[index]);
+                epoch_watch.stop();
+                epoch_callback(epoch_watch.seconds());
             }
-            target.forward_propagate();
-            target.back_propagate(ones);
-            for (Node& node : nodes_) node.apply_gradient(learning_rate);
         }
     }
 

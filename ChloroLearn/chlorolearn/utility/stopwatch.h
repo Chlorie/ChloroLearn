@@ -15,6 +15,8 @@ namespace chloro
     public:
         /** \brief Constructs a \c Stopwatch object and start the clock. */
         Stopwatch() :start_(Clock::now()) {}
+        /** \brief Reset the start point of this stopwatch. */
+        void restart() { start_ = Clock::now(); }
         /** \brief Stop the stopwatch. */
         void stop() { stop_ = Clock::now(); }
         /**
