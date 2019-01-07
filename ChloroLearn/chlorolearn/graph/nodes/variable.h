@@ -26,7 +26,7 @@ namespace chloro
         void set_value(const Array<double>& value) { value_ = value; }
         /** \brief Explicitly set the value of this variable by moving in some array. */
         void set_value(Array<double>&& value) { value_ = std::move(value); }
-        /** \brief Substract an array value from current value element-wisely. */
-        void substract_from_current(const Array<double>& decrement) { value_ -= decrement; }
+        /** \brief Subtract an array value from current value element-wisely. */
+        void subtract_from_current(const Array<double>& decrement) { value_ -= decrement; }
     };
 }

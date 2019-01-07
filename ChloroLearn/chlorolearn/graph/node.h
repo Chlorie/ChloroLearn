@@ -29,6 +29,13 @@ namespace chloro
     {
         friend class Graph;
     private:
+        enum VariantType
+        {
+            InputType,
+            ConstantType,
+            VariableType,
+            OperatorType
+        };
         Array<double> operator_value_;
         Array<double> gradient_;
         Optimizer optimizer_;

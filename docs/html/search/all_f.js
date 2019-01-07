@@ -12,7 +12,7 @@ var searchData=
   ['state',['state',['../structchloro_1_1_forward_params.html#a7788414a2bd715945048d679e8c8caac',1,'chloro::ForwardParams::state()'],['../structchloro_1_1_backward_params.html#a0d1d2a86a8a333f8e83395d17c10e6a4',1,'chloro::BackwardParams::state()']]],
   ['stop',['stop',['../classchloro_1_1_stopwatch.html#a6ce4d2b3c521aff8e5de96544057dc3d',1,'chloro::Stopwatch']]],
   ['stopwatch',['Stopwatch',['../classchloro_1_1_stopwatch.html',1,'chloro::Stopwatch'],['../classchloro_1_1_stopwatch.html#a24448f886f9c34cc4e21c86fde7f9f8b',1,'chloro::Stopwatch::Stopwatch()']]],
-  ['substract_5ffrom_5fcurrent',['substract_from_current',['../classchloro_1_1_variable.html#adf37afcb68e7be5a027791723560ef42',1,'chloro::Variable']]],
   ['subtract',['subtract',['../namespacechloro_1_1operators.html#a6f236761f4dd190d97178b025a3c8734',1,'chloro::operators']]],
+  ['subtract_5ffrom_5fcurrent',['subtract_from_current',['../classchloro_1_1_variable.html#a857b65275aba06dc2ab156f9fc252f06',1,'chloro::Variable']]],
   ['sum',['sum',['../namespacechloro_1_1operators.html#a43afecea634e2aa67251107c5a30a9b6',1,'chloro::operators']]]
 ];

@@ -12,7 +12,7 @@ namespace chloro::operators
     Operand flatten(Operand input)
     {
         const ArrayShape& shape = input.shape();
-        const size_t size = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies());
+        const size_t size = std::accumulate(shape.begin(), shape.end(), size_t(1), std::multiplies());
         return reshape(std::move(input), { int(size),1 });
     }
 
@@ -172,7 +172,7 @@ namespace chloro::operators
                                     if (param[input_i] > result[result_index])
                                     {
                                         result[result_index] = param[input_i];
-                                        state[result_index] = input_i;
+                                        state[result_index] = double(input_i);
                                     }
                                 }
                             result_index++;

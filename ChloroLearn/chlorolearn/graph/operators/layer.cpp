@@ -14,6 +14,7 @@ namespace chloro::layers
             throw IllegalArgumentException("Input should be a column vector");
         const size_t row = shape[0];
         const NodeRef weights = graph.add_variable({ output_rows, row });
+        graph.set_variable(weights, Array<double>::random({ output_rows, row }, 0.0, std::sqrt(2.0 / (row + output_rows))));
         const NodeRef bias = graph.add_variable({ output_rows, 1 });
         const NodeRef no_activation = graph.add_operator(matrix_multiply(weights, input) + bias);
         if (activation != nullptr) return graph.add_operator(activation(no_activation));
@@ -35,7 +36,10 @@ namespace chloro::layers
         const ArrayShape& shape = input.get().shape();
         if (shape.size() != 3)
             throw IllegalArgumentException("Input should be 3D (2D feature maps)");
-        const NodeRef kernel_node = graph.add_variable({ filter_amount, kernel_size[0], kernel_size[1], shape[2] });
+        const ArrayShape kernel_shape{ filter_amount, kernel_size[0], kernel_size[1], shape[2] };
+        const NodeRef kernel_node = graph.add_variable(kernel_shape);
+        const double variance = 2.0 / (kernel_size[0] * kernel_size[1] * shape[2]);
+        graph.set_variable(kernel_node, Array<double>::random(kernel_shape, 0.0, std::sqrt(variance)));
         const NodeRef no_activation = graph.add_operator(convolution_2d_with_padding(input, kernel_node, stride));
         if (activation != nullptr) return graph.add_operator(activation(no_activation));
         return no_activation;

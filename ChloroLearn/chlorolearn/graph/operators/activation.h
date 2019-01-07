@@ -12,6 +12,13 @@ namespace chloro::operators
     Operand relu(Operand operand);
 
     /**
+     * \brief Leaky ReLU operation.
+     * \param operand Input operand. Could be in any shape.
+     * \return The output operand.
+     */
+    Operand leaky_relu(Operand operand);
+
+    /**
      * \brief Sigmoid function.
      * \param operand Input operand. Could be in any shape.
      * \return The output operand.

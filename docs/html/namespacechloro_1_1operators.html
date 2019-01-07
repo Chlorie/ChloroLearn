@@ -80,6 +80,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aeafadb1cc74829cf645dda31b3784a2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#aeafadb1cc74829cf645dda31b3784a2c">relu</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> operand)</td></tr>
 <tr class="memdesc:aeafadb1cc74829cf645dda31b3784a2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ReLU (rectified linear unit) operation.  <a href="#aeafadb1cc74829cf645dda31b3784a2c">More...</a><br /></td></tr>
 <tr class="separator:aeafadb1cc74829cf645dda31b3784a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c3310178b3d2aa61c23cbfc7a605b7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#a4c3310178b3d2aa61c23cbfc7a605b7b">leaky_relu</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> operand)</td></tr>
+<tr class="memdesc:a4c3310178b3d2aa61c23cbfc7a605b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leaky ReLU operation.  <a href="#a4c3310178b3d2aa61c23cbfc7a605b7b">More...</a><br /></td></tr>
+<tr class="separator:a4c3310178b3d2aa61c23cbfc7a605b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56a9fb9ba11ca2057335ff6c557dbe8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechloro_1_1operators.html#a56a9fb9ba11ca2057335ff6c557dbe8d">sigmoid</a> (<a class="el" href="classchloro_1_1_operand.html">Operand</a> operand)</td></tr>
 <tr class="memdesc:a56a9fb9ba11ca2057335ff6c557dbe8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sigmoid function.  <a href="#a56a9fb9ba11ca2057335ff6c557dbe8d">More...</a><br /></td></tr>
 <tr class="separator:a56a9fb9ba11ca2057335ff6c557dbe8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -416,6 +419,33 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A result operand that evaluates to the same value as the input. </dd></dl>
+
+</div>
+</div>
+<a id="a4c3310178b3d2aa61c23cbfc7a605b7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c3310178b3d2aa61c23cbfc7a605b7b">&#9670;&nbsp;</a></span>leaky_relu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchloro_1_1_operand.html">Operand</a> chloro::operators::leaky_relu </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchloro_1_1_operand.html">Operand</a>&#160;</td>
+          <td class="paramname"><em>operand</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Leaky ReLU operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">operand</td><td><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a> operand. Could be in any shape. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The output operand. </dd></dl>
 
 </div>
 </div>

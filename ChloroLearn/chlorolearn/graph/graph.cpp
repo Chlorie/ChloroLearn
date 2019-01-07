@@ -38,8 +38,7 @@ namespace chloro
 
     Node& Graph::add_variable(const ArrayShape& shape)
     {
-        nodes_.emplace_back(Variable(shape));
-        Node& node = nodes_.back();
+        Node& node = nodes_.emplace_back(Variable(shape));
         node.gradient_ = Array<double>::zeros(shape);
         return node;
     }
@@ -86,18 +85,7 @@ namespace chloro
     {
         if (node.content_.index() != 2) // Not a variable
             throw IllegalArgumentException("Current node is not a variable");
-        std::get<2>(node.content_).set_value(value);
-    }
-
-    void Graph::randomize_variables(const double mean, const double stddev)
-    {
-        for (Node& node : nodes_)
-            if (node.content_.index() == 2) // Variable node
-            {
-                Variable& variable = std::get<2>(node.content_);
-                const ArrayShape& shape = variable.value().shape();
-                variable.set_value(Array<double>::random(shape, mean, stddev));
-            }
+        std::get<Node::VariableType>(node.content_).set_value(value);
     }
 
     void Graph::optimize_once(Node& target, const std::initializer_list<InputParam> input_params,
@@ -182,7 +170,7 @@ namespace chloro
         for (const Node& node : nodes_)
             if (node.content_.index() == 2)
             {
-                const Array<double>& value = std::get<2>(node.content_).value();
+                const Array<double>& value = std::get<Node::VariableType>(node.content_).value();
                 write_vector(stream, value.shape());
                 write_vector(stream, value.data());
             }
@@ -195,7 +183,7 @@ namespace chloro
         for (Node& node : nodes_)
             if (node.content_.index() == 2)
             {
-                Variable& variable = std::get<2>(node.content_);
+                Variable& variable = std::get<Node::VariableType>(node.content_);
                 ArrayShape shape;
                 read_vector(stream, shape);
                 if (!stream.good())

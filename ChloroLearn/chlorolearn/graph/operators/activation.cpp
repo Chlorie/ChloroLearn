@@ -17,6 +17,20 @@ namespace chloro::operators
         return Operand::join(std::move(op), { std::move(operand) });
     }
 
+    Operand leaky_relu(Operand operand)
+    {
+        Operator op([](InParams params) { return params[0].get().apply(
+            [](const double v) { return v > 0 ? v : 0.01 * v; }); },
+            [](const BackwardParams params)
+            {
+                InParam param = params.childs[0];
+                InParam gradient = params.gradient;
+                return OutParams{ gradient * param.apply([](const double v) { return v > 0 ? 1 : 0.01; }) };
+            },
+            operand.shape());
+        return Operand::join(std::move(op), { std::move(operand) });
+    }
+
     Operand sigmoid(Operand operand)
     {
         Operator op(

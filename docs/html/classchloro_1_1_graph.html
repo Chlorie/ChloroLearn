@@ -105,9 +105,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e3171aa1c61c0cb869607cb354b7960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a8e3171aa1c61c0cb869607cb354b7960">set_variable</a> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;node, const <a class="el" href="classchloro_1_1_array.html">Array</a>&lt; double &gt; &amp;value) const</td></tr>
 <tr class="memdesc:a8e3171aa1c61c0cb869607cb354b7960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly set the value of a <code><a class="el" href="classchloro_1_1_variable.html" title="This kind of node content holds an array variable. ">Variable</a></code> node. Can be used in order to customize graph saving and loading.  <a href="#a8e3171aa1c61c0cb869607cb354b7960">More...</a><br /></td></tr>
 <tr class="separator:a8e3171aa1c61c0cb869607cb354b7960"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a062e511485631ccc72eb3866e966d448"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a062e511485631ccc72eb3866e966d448">randomize_variables</a> (double mean=0.0, double stddev=1.0)</td></tr>
-<tr class="memdesc:a062e511485631ccc72eb3866e966d448"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random variable values using a normal distribution.  <a href="#a062e511485631ccc72eb3866e966d448">More...</a><br /></td></tr>
-<tr class="separator:a062e511485631ccc72eb3866e966d448"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a106cc8c295b5ea89dbfb3d19b6765e0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchloro_1_1_graph.html#a106cc8c295b5ea89dbfb3d19b6765e0e">optimize_once</a> (<a class="el" href="classchloro_1_1_node.html">Node</a> &amp;target, std::initializer_list&lt; <a class="el" href="structchloro_1_1_input_param.html">InputParam</a> &gt; input_params, const Optimizer &amp;optimizer)</td></tr>
 <tr class="memdesc:a106cc8c295b5ea89dbfb3d19b6765e0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimize the target once using gradient descent method.  <a href="#a106cc8c295b5ea89dbfb3d19b6765e0e">More...</a><br /></td></tr>
 <tr class="separator:a106cc8c295b5ea89dbfb3d19b6765e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -428,43 +425,6 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">target</td><td>The target <code><a class="el" href="classchloro_1_1_operator.html" title="This kind of node content holds a lazy-evaluated operation. ">Operator</a></code> node to minimize. </td></tr>
     <tr><td class="paramname">input_params</td><td>An <code>std::initializer_list</code> of <code><a class="el" href="structchloro_1_1_input_param.html" title="An aggregate struct for providing an input array for an Input node. ">InputParam</a></code>s for <code><a class="el" href="classchloro_1_1_input.html" title="This kind of node content holds a placeholder of an input array. ">Input</a></code> nodes. </td></tr>
     <tr><td class="paramname">optimizer</td><td>The optimizer that will be used. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a062e511485631ccc72eb3866e966d448"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a062e511485631ccc72eb3866e966d448">&#9670;&nbsp;</a></span>randomize_variables()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void chloro::Graph::randomize_variables </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>mean</em> = <code>0.0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>stddev</em> = <code>1.0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Random variable values using a normal distribution. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mean</td><td>Mean of the distribution. </td></tr>
-    <tr><td class="paramname">stddev</td><td>Standard deviation of the distribution. Defaults to 1.0. </td></tr>
   </table>
   </dd>
 </dl>

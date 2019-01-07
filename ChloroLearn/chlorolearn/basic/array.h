@@ -14,7 +14,7 @@
 namespace chloro
 {
     using ArrayShape = std::vector<size_t>;
-    using DefaultableArrayShape = std::vector<int>;
+    using DefaultableArrayShape = std::vector<int64_t>;
     inline static const ArrayShape scalar_shape{ 1 };
 
     /**
@@ -76,7 +76,7 @@ namespace chloro
         /** \brief Constructs an array filled with zeros with the given shape. */
         static Array zeros(const ArrayShape& shape)
         {
-            size_t size = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<size_t>());
+            size_t size = std::accumulate(shape.begin(), shape.end(), size_t(1), std::multiplies());
             Array result;
             result.shape_ = shape;
             result.data_.resize(size);
@@ -90,7 +90,7 @@ namespace chloro
         {
             static std::mt19937 generator{ std::random_device{}() };
             std::normal_distribution distribution{ mean, stddev };
-            size_t size = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<size_t>());
+            size_t size = std::accumulate(shape.begin(), shape.end(), size_t(1), std::multiplies());
             Array result;
             result.shape_ = shape;
             result.data_.reserve(size);
@@ -105,7 +105,7 @@ namespace chloro
          */
         static Array repeats(const T repeat, const ArrayShape& shape)
         {
-            size_t size = std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<size_t>());
+            size_t size = std::accumulate(shape.begin(), shape.end(), size_t(1), std::multiplies());
             Array result;
             result.shape_ = shape;
             result.data_ = std::vector<T>(size, repeat);
@@ -382,7 +382,7 @@ namespace chloro
          */
         void reshape(const DefaultableArrayShape& shape)
         {
-            int automatic = -1;
+            int64_t automatic = -1;
             size_t size = 1;
             shape_.clear();
             for (size_t i = 0; i < shape.size(); i++)
@@ -393,7 +393,7 @@ namespace chloro
                     if (shape[i] == -1)
                     {
                         if (automatic == -1)
-                            automatic = i;
+                            automatic = int64_t(i);
                         else
                             throw IllegalArgumentException("Multiple automatic dimensions");
                     }
@@ -401,8 +401,8 @@ namespace chloro
                         throw ArgumentOutOfRangeException("The lengths should be positive or -1 for automatic");
                 }
                 else
-                    size *= shape[i];
-                shape_.push_back(shape[i]);
+                    size *= size_t(shape[i]);
+                shape_.push_back(size_t(shape[i]));
             }
             const size_t data_size = data_.size();
             // No automatic dimension
@@ -415,7 +415,7 @@ namespace chloro
             {
                 if (data_size % size != 0)
                     throw IllegalArgumentException("Automatic dimension is not an integer");
-                shape_[automatic] = data_size / size;
+                shape_[size_t(automatic)] = data_size / size;
             }
         }
         /** \brief Force reshaping the array into another shape. Padding and truncating might happen. */

@@ -1,7 +1,6 @@
 var searchData=
 [
   ['random',['random',['../classchloro_1_1_array.html#a4360c395fb03160494c18c0b07b4841e',1,'chloro::Array']]],
-  ['randomize_5fvariables',['randomize_variables',['../classchloro_1_1_graph.html#a062e511485631ccc72eb3866e966d448',1,'chloro::Graph']]],
   ['ref',['Ref',['../structchloro_1_1_listed_operator.html#a7e83af1e15b0291be29a17a0b0f7376a',1,'chloro::ListedOperator']]],
   ['relu',['relu',['../namespacechloro_1_1operators.html#aeafadb1cc74829cf645dda31b3784a2c',1,'chloro::operators']]],
   ['repeat',['repeat',['../namespacechloro_1_1operators.html#a9915ed7ed92a6a5268b6d2e72aa48197',1,'chloro::operators']]],

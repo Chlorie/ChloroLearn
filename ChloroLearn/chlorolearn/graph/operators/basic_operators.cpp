@@ -113,8 +113,8 @@ namespace chloro
 
         Operand repeat(Operand scalar, const ArrayShape& shape)
         {
-            const ArrayShape& scalar_shape = scalar.shape();
-            if (scalar_shape.size() != 1 || scalar_shape[0] != 1)
+            const ArrayShape& first_shape = scalar.shape();
+            if (first_shape.size() != 1 || first_shape[0] != 1)
                 throw MismatchedSizesException("Repeated value isn't a scalar");
             Operator op([&](InParams params) { return Array<double>::repeats(params[0].get()[0], shape); },
                 [](const BackwardParams params) { return OutParams{ params.gradient.accumulate(0) }; }, shape);

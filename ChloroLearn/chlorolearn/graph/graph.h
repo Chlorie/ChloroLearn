@@ -87,12 +87,6 @@ namespace chloro
          */
         void set_variable(Node& node, const Array<double>& value) const;
         /**
-         * \brief Random variable values using a normal distribution.
-         * \param mean Mean of the distribution.
-         * \param stddev Standard deviation of the distribution. Defaults to 1.0.
-         */
-        void randomize_variables(double mean = 0.0, double stddev = 1.0);
-        /**
          * \brief Optimize the target once using gradient descent method.
          * \param target The target \c Operator node to minimize.
          * \param input_params An \c std::initializer_list of <tt>InputParam</tt>s for \c Input nodes.
